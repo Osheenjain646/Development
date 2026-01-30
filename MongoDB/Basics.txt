@@ -1,0 +1,14 @@
+No Sql:-
+1. It is a db in which you can all db related work without using Sql
+2. It can store data in a non-relational model , means without any table like structure 
+3. We actually store data in a:-
+a.graph based format
+b.key-value pair 
+c.document based 
+and many more.
+
+From Document type the mongodb comes 
+
+
+
+
