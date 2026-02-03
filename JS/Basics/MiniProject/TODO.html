@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TODO-LIST</title>
+    <style>
+        .DarkModeButton{
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: gray;
+            font-size: 15px;
+            border-radius: 10px;
+        }
+        .Button{
+            background-color: gray;
+            border-radius: 10px;
+        }
+        .DarkMode{
+            background-color: black;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <button class="DarkModeButton">Dark/Light</button>
+    <h1>TODO LIST</h1>
+    <div>
+        <input id="user" type="text" placeholder="Enter username">
+        <input id="data" type="text" placeholder="Enter your todo task">
+        <button class="AddButton">Add Todo</button>
+        <button class="DeleteButton">Delete Todo</button>
+        <button class="ShowDataBase">Show Data</button>
+    </div>
+    <div id="todo">
+
+    </div>
+    <script>
+        // dark and lighr mode
+        const darkmode=document.querySelector('.DarkModeButton')
+        darkmode.addEventListener('click',function(){
+            document.body.classList.toggle('DarkMode')
+        })
+
+        // add todo 
+        const map = new Map()
+        const AddButton = document.querySelector('.AddButton')
+        AddButton.addEventListener('click',function(){
+            const user = document.querySelector('#user').value
+            const data = document.querySelector('#user').value
+            if(!map.has(user)){
+                map.set(user,new Array())
+                map.get(user).push(data)
+            }
+            else{
+                map.get(user).push(data)
+            }
+            localStorage.setItem(user,JSON.stringify(map.get(user)))
+        })
+
+        // show database 
+        const showDataBase = document.querySelector('.ShowDataBase')
+        const dataset = document.querySelector
+    </script>
+</body>
+</html>

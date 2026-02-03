@@ -365,7 +365,10 @@
 
 // console.log("E");
 
-// Assiignment 
+
+// for async file read we use try and catch block for data and error as then and catch in sync read 
+
+
 
 
 

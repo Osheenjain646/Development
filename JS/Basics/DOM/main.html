@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .dark{
+            background-color: black;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <!-- <div id="h1" class="h2">Hello</div>
+    <div class="h2">Hello</div>
+    <div class="h2">Hello</div>
+    <div class="h2">Hello</div> -->
+    <!-- <div class="Heading">
+        Hello
+        <div style="display: none;">World</div>
+        <span>Hii</span>
+    </div> -->
+
+    <!-- <h1>This is a dark page.</h1> -->
+
+    <!-- <div id="Parent">
+        <div id="Child">Hello</div>
+    </div>
+    <a href="https://www.google.com/" id="google">Google</a> -->
+
+    <ul>
+        <li>Hello</li>
+        <li>Hello</li>
+        <li>Hello</li>
+        <li>Hello</li>
+        <li>Hello</li>
+    </ul>
+    <script>
+        // to select element 
+        // Accessing the Data 
+        // const id = document.getElementById("h1")
+        // console.log(id)
+        // const throughclass = document.getElementsByClassName("h2")
+        // console.log(throughclass)
+        // const element = document.getElementsByTagName("div")
+        // console.log(id)
+        // const query = document.querySelector('div')
+        // console.log(query)
+        // const queryall = document.querySelectorAll('div')  // give all data in the form of nodelist 
+        // console.log(queryall)
+
+        // Reading the Data 
+        // const h1 = document.querySelector('.Heading')
+        // console.log(h1.innerHTML);  // get all the inner html of the div having Heading class (get all html) 
+        // console.log(h1.textContent);  // give all the textual data even if it is hidden 
+        // console.log(h1.innerText);  // give only the data that is not hidden do not show the hidden data 
+        
+        // Create Element
+
+        // const div = document.createElement('h1')
+        // div.textContent="Hello"
+        // console.log(div.innerText);
+        // Appending Element
+
+        // const body = document.body
+        // body.appendChild(div)
+
+        // Deleting Element 
+
+        // const data=document.querySelector("#Child")
+        // find parent 
+        // const p = data.parentElement
+        // p.removeChild(data)
+
+        // Set Attributes 
+        // to add a attribute in the element 
+
+        //const div = document.createElement('div')
+        //div.innerHTML="Hello"
+        //document.body.appendChild(div)
+        //div.setAttribute('id','Hello')  // key value pair format and can give style, function, id, class 
+
+        // classlist add  remove  contains  replace  
+
+        //div.classList.add("class1","class2","class3")
+        //div.classList.remove("class2")
+        //console.log(div.classList.contains("class2"))
+        //div.classList.replace("class1","class4")
+
+        // Event Listeners and remove Event Listeners 
+        // code that tells if i do something like click a button (operation) then do something is eevent like background become red
+
+        //const button = document.createElement('button')
+        //button.innerText="Dark"
+        //document.body.appendChild(button)
+
+        // applying the Event Listener on button 
+        //button.addEventListener('click',function(){
+            //document.body.classList.toggle('dark')
+        //})
+
+        // Event Bubbling and Event Capturing 
+        // Event Capturing : means the parent event will run first if i do for the child event first 
+        // Event Bubbling : means first child event will occur and then for all the parents above it (By Default) 
+
+        //const parent=document.querySelector('#Parent')
+        //const child=document.querySelector('#Child')
+
+        //child.addEventListener('click',function(){
+          //  console.log("Child called")
+        //})
+        // stopPropogation is used to run the event listener of the current tag only 
+        //child.addEventListener('click',function(event){
+          //  event.stopPropagation()
+            //console.log("Child called")
+        //})
+        //parent.addEventListener('click',function(){
+          //  console.log("parent called")
+        //},true)// it will call child first then parent (event bubbling) and 
+        // if true is set at parent then event capturing will perform 
+        //parent.addEventListener('click',function(){
+          //  console.log("parent called")
+        //})
+
+        const googlelink=document.querySelector('#google')// on clicking the link it will always go to the new page like default behaivour 
+        // so do 
+        //googlelink.addEventListener('click',function(event){
+          //  event.preventDefault()  // prevent opening to go to default webpage used to use freeze the default opening 
+        //})
+        
+        // remove Event Listener 
+        // must pass the same function as in the adding process 
+        //function main(event){
+          //  event.preventDefault()
+        //}
+
+        //googlelink.addEventListener('click',main,/* to do event only one time then remove it */{once:true})
+        //googlelink.removeEventListener('click',main) // remove after the operation 
+
+        // Event Delegation 
+        //const li = document.querySelectorAll('li')
+        //console.log(li)
+
+        //li.forEach((l)=>{  // this will create event listener for all li's this will make website response slow 
+          //  l.addEventListener('click',function(){
+            //    console.log("Hello called");
+        //    })
+        //})
+
+        // so we do event delegation 
+
+        //const ul = document.querySelector('ul')
+
+        //ul.addEventListener('click',function(e){
+          //  if(e.target.tagName==='LI'){   // this will target the li which is clicked and create a single event listener for all 
+            //    console.log("Hello Called");
+           // }
+        //})
+
+        // Local Storage 
+
+        const user={
+            name:'osheen'
+        };
+        // to input data in the local storage 
+        //localStorage.setItem('name','osheen')// key value pair
+        //localStorage.getItem('name')// key only 
+        //localStorage.removeItem('name')
+
+        // to store object in the string format 
+        localStorage.setItem('data',JSON.stringify(user))
+        const data=localStorage.getItem('data')
+        const obj =JSON.parse(data)
+        console.log(data)
+        console.log(obj.name)
+    </script>
+</body>
+</html>
