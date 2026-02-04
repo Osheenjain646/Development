@@ -140,5 +140,4 @@ function EndofDay(){
 
 EndofDay()
 
-console.log(bankDatabase);
 
