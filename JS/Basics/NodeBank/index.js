@@ -1,8 +1,10 @@
-// Base code given 
-const fs = require('fs').promises; // File System with Promises
-const bankDatabase = new Map();
 // Global Data Structure to store all accounts
+
 // Key: Account ID (String), Value: Account Object
+const bankDatabase = new Map();
+
+const fs = require('fs').promises; // File System with Promises
+
 // 1. Base Class: Account
 class Account {
     // Protected property convention
@@ -31,39 +33,41 @@ class Account {
             amount: amount,
             date: new Date()
         });
+        bankDatabase.set(this._accountHolder,this.#balance);
+    }
+
+    processInternationalTransfer(amount, callback){
+        return new Promise((resolve,reject)=>{
+            setTimeout(function(){
+                if(amount>10000){
+                    reject("Audit Required")
+                }
+                else{
+                    resolve(callback);
+                }
+            },2000)
+        })
     }
 
     deposit(amount){
         this._modifyBalance(amount)
     }
 
-    processInternationalTransfer(amount, callback){
-        return new Promise(function(resolve,reject){
-            setTimeout(function(){
-                if(amount>10000){
-                    reject("Audit Required");
-                }else{
-                    resolve(callback);
-                }
-            },2000);
-        })
-    }
-
     displaySummary() {
         console.log(`Holder: ${this._accountHolder} | Balance: $${this.balance}`);
     }
 }
-// Task 1
+// Task 1 
 class InvestmentAccount extends Account{
     static INTEREST_RATE=0.05;
-    #lockedFunds =true;
+    #lockedFunds=true;
 
-    constructor(_accountHolder){
-        
+    constructor(name,initialBalance){
+        super(name,initialBalance)
     }
 
-    set lockStatus(status){
-        this.#lockedFunds = status;
+    set locedStatus(status){
+        this.#lockedFunds=status;
     }
 
     _modifyBalance(amount){
@@ -74,56 +78,67 @@ class InvestmentAccount extends Account{
     }
 }
 
-const account1 = new Account("Osheen",20000000000);
-const account2 = new Account("Anurag",20000000000);
-const account3 = new Account("Manoj",20000000000);
-const account4 = new Account("Chitranshi",20000000000);
-const account5 = new Account("unknown",-200000);
+const account1 = new Account("osheen",42656236561656);
+account1._modifyBalance(5000);
 
-// Task 2
-async function generateMonthlyStatement(accountobj){
+// Task 2 
+async function generateMonthlyStatemnet(accountObj) {
     try{
-        const {_accountHolder,transactions} = accountobj;
-        const filename=`Statement_${_accountHolder}.txt`;
-        const Data = JSON.stringify(transactions);
-        await fs.writeFile(filename,Data);
+        const {_accountHolder,transactions}=accountObj;
+        const data=JSON.stringify(transactions);
+        const pathFile =`statement_${_accountHolder}.txt`
+        await fs.writeFile(pathFile,data);
     }catch(error){
-        throw new Error("Please Provide the file.");
+        throw new Error(error);
     }
 }
 
-account1._modifyBalance(500000);
+generateMonthlyStatemnet(account1);
 
-generateMonthlyStatement(account1);
+// Task 3 
+function callback(){}
 
-account1.processInternationalTransfer(10000,function(){
-    console.log("Transfer Complete");
-}).then(function(data){
-    data();
-}).catch(function(data){
+function completed(){
+    console.log("Transfer Completed");
+}
+
+function rejected(data){
     console.log(data);
-});
+}
+
+account1.processInternationalTransfer(10000,callback).then(completed).catch(rejected) 
 
 
-
-
-function auditBankAssets(bankDatabase){
-    let totalLiquidity=0;
-    for(const element of bankDatabase){
-        if(element[1]<0){
-            console.log(element[0]);
+function auditBankAssets(databaseMap){
+    let liquidity=0;
+    for(const [Key,Value] of databaseMap){
+        if(Value<0){
+            console.log(Key);
+            continue;
         }
-        totalLiquidity+=element[1];
+        liquidity+=Value;
     }
-    console.log(totalLiquidity);
 }
 
-auditBankAssets(bankDatabase);
+auditBankAssets(bankDatabase)
 
-async function EndofDay() {
-    const acc = new Account("Aj",50000)
-    const inv = new InvestmentAccount("CJ")
-    acc.depo
+function EndofDay(){
+    const acc = new Account("acc1",1336665);
+    const inv = new InvestmentAccount("inv1",2665656)
+
+    acc.deposit(6462626)
+    inv.deposit(5656166)
+
+    Promise.all([generateMonthlyStatemnet(acc),generateMonthlyStatemnet(inv)]).then(()=>{
+        console.log("Statements Generated");
+    })
+
+    auditBankAssets(bankDatabase)
+
 }
 
+
+EndofDay()
+
+console.log(bankDatabase);
 

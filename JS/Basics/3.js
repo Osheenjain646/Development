@@ -63,6 +63,8 @@
 //     console.log(data*5);
 // })
 
+// Filter 
+
 // let arr =[1,2,3,4,5]
 
 // function even(data){

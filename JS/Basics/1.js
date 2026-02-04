@@ -4,13 +4,14 @@
 // let voted=age>18?"yes":"no"
 // console.log(voted)
 
+// Ternary opearator 
 // let temp=25
 // let ans= temp>25?"Hot Day" : (15<=temp && temp<=25 ? "Moderate" : "Cold Day")
 // console.log(ans);
 // use if-else for cleaner way 
 
 // Nullish coelesence operator 
-// we use it to get protected fromgetting any falsy value
+// we use it to get protected from getting any falsy value
 // eg:-
 
 // function DB(){
@@ -115,7 +116,7 @@
 // console.log(arr2);
 
 // // unshift 
-// arr2.unshift(10) // this will shift all the elements and the and insert in the first position in the element 
+// arr2.unshift(10) // this will shift all the elements and then insert in the first position of the arr 
 // console.log(arr2);
 
 // //shift 
