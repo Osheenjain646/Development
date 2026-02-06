@@ -3,60 +3,287 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TODO-LIST</title>
+    <title>Document</title>
     <style>
-        .DarkModeButton{
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            max-width: 700px;
+            margin: 0 auto;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background-attachment: fixed;
+            color: #333;
+            transition: all 0.5s ease;
+            position: relative;
+        }
+
+        body::before {
+            content: '';
             position: absolute;
-            top: 10px;
-            right: 10px;
-            background-color: gray;
-            font-size: 15px;
-            border-radius: 10px;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: radial-gradient(circle at 25% 25%, rgba(255,255,255,0.1) 0%, transparent 50%),
+                              radial-gradient(circle at 75% 75%, rgba(255,255,255,0.1) 0%, transparent 50%);
+            pointer-events: none;
         }
-        .Button{
-            background-color: gray;
-            border-radius: 10px;
+
+        .dark {
+            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+            color: #ecf0f1;
         }
-        .DarkMode{
-            background-color: black;
+
+        .dark input, .dark button {
+            background-color: #34495e;
+            color: #ecf0f1;
+            border-color: #7f8c8d;
+        }
+
+        #dark {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            padding: 12px 18px;
+            background: linear-gradient(45deg, #3498db, #2980b9);
             color: white;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: bold;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            transition: all 0.3s ease;
+        }
+
+        #dark:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 40px;
+            color: #fff;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+            font-size: 2.5em;
+            animation: fadeInDown 1s ease-out;
+        }
+
+        .dark h1 {
+            color: #ecf0f1;
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        div {
+            margin-bottom: 20px;
+        }
+
+        input {
+            padding: 12px;
+            margin-right: 10px;
+            border: 2px solid rgba(255,255,255,0.3);
+            border-radius: 25px;
+            font-size: 16px;
+            width: calc(50% - 10px);
+            background: rgba(255,255,255,0.9);
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: #3498db;
+            box-shadow: 0 0 10px rgba(52, 152, 219, 0.5);
+        }
+
+        .AddTodo {
+            padding: 12px 25px;
+            background: linear-gradient(45deg, #27ae60, #2ecc71);
+            color: white;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            transition: all 0.3s ease;
+        }
+
+        .AddTodo:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+        }
+
+        #Todo {
+            margin-top: 40px;
+        }
+
+        #Todo > div {
+            background: rgba(255,255,255,0.95);
+            border: 1px solid rgba(255,255,255,0.3);
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+            backdrop-filter: blur(10px);
+            animation: fadeInUp 0.5s ease-out;
+            transition: all 0.3s ease;
+        }
+
+        .dark #Todo > div {
+            background: rgba(52, 73, 94, 0.95);
+            border-color: rgba(255,255,255,0.1);
+            box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        #Todo > div:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 40px rgba(0,0,0,0.2);
+        }
+
+        .dark #Todo > div:hover {
+            box-shadow: 0 12px 40px rgba(0,0,0,0.4);
+        }
+
+        #Todo span {
+            flex-grow: 1;
+            font-weight: bold;
+            font-size: 1.1em;
+        }
+
+        #Todo span::before {
+            content: '📝 ';
+            margin-right: 5px;
+        }
+
+        #Todo button {
+            padding: 8px 15px;
+            background: linear-gradient(45deg, #e74c3c, #c0392b);
+            color: white;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: bold;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            transition: all 0.3s ease;
+        }
+
+        #Todo button::before {
+            content: '🗑️ ';
+        }
+
+        #Todo button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+            input {
+                width: calc(100% - 20px);
+                margin-bottom: 10px;
+            }
+            .AddTodo {
+                width: 100%;
+            }
         }
     </style>
 </head>
 <body>
-    <button class="DarkModeButton">Dark/Light</button>
-    <h1>TODO LIST</h1>
+    <button id="dark">Dark</button>
+    <h1>Todo-List</h1>
     <div>
-        <input id="user" type="text" placeholder="Enter username">
-        <input id="data" type="text" placeholder="Enter your todo task">
-        <button class="AddButton">Add Todo</button>
-        <button class="DeleteButton">Delete Todo</button>
+        <input id="data" type="text" placeholder="Enter the Todo">
+        <input id="user" type="text" placeholder="Enter the Name">
+        <button class="AddTodo">Add Todo</button>
     </div>
-    <div id="todo">
+    <div id="Todo">
 
     </div>
     <script>
-        // dark and light mode 
-        const darkmode=document.querySelector('.DarkModeButton')
-        darkmode.addEventListener('click',function(){
-            document.body.classList.toggle('DarkMode')
+        // dark property
+        document.querySelector('#dark').addEventListener('click',function(){
+            document.body.classList.toggle('dark')
         })
 
-        // add todo 
-        const map = new Map()
-        const AddButton = document.querySelector('.AddButton')
-        AddButton.addEventListener('click',function(){
+        // create Database
+        let map = new Map()
+
+        // storing the data in the database 
+        document.querySelector('.AddTodo').addEventListener('click',function(){
+            const data = document.querySelector('#data').value
             const user = document.querySelector('#user').value
-            const data = document.querySelector('#user').value
+
             if(!map.has(user)){
                 map.set(user,new Array())
                 map.get(user).push(data)
-            }
-            else{
+            }else{
                 map.get(user).push(data)
             }
-            localStorage.setItem(user,JSON.stringify(map.get(user)))
+            render()
         })
+
+        // create function 
+
+        function createfunction(key,value){
+            const div = document.createElement('div')
+            const span = document.createElement('span')
+            const button = document.createElement('button')
+            button.innerHTML="Delete"
+            span.innerHTML = `User: ${key} , Todos: ${value}`
+            button.setAttribute('onclick',`DeleteTodo("${key}")`)
+            div.appendChild(span)
+            div.appendChild(button)
+            return div
+        }
+
+        // delete functionality
+
+        function DeleteTodo(key){
+            map.delete(key)
+            render()
+        }
+
+        // render function 
+        function render(){
+            const todo = document.querySelector('#Todo')
+            todo.innerHTML=""
+            for (const [key,value] of map) {
+                const create = createfunction(key,value)
+                todo.appendChild(create)
+            }
+            document.body.appendChild(todo)
+        }
+
     </script>
 </body>
 </html>
+
+
+
