@@ -171,6 +171,280 @@
 // Never 
 
 
+// Difference betweeen interface and types 
+
+// type use to define the type of anything like function too 
+
+// interface use to define the type mostly objects classes 
+
+
+// type alias 
+// means you can give any type to anyone 
+
+// type user = string|number|boolean
+
+// let user1:user // it can have all three type of value 
+
+
+// type assertion 
+// type user ="hello" 
+// let user1:user="hello"  // this mean that it can have only hello in it 
+
+// to make a and define a function in the interface 
+// interface user{
+//     name:string
+//     details(a:number/*type of parameter*/):number // return type of function 
+//     deta:()=>string// return type of function another way 
+// }
+
+// Union 
+
+// type A ={name:string}
+// type B ={age:string}
+
+// type C = A|B    // this will take may be the property of A or B or Both using the union 
+
+// let obj={
+//     name:"bjdcbjsb",
+//     age:"bdhvbhjc"
+// }
+
+// function main (obj:C){
+//     // console.log(obj.name);  // typescript will get confuse that from which it will take the property from A or B or Both 
+//     // to protect from getting confuse 
+//     // using the type narrowing here 
+//     if("name" in obj){  // "in" is checking the object that it contain in it 
+//         console.log(obj.name);
+//     }
+
+//     if("age" in obj){
+//         console.log(obj.age);
+//     }
+// }
+
+//  main(obj)
+
+// optional parameter 
+
+// interface user{
+//     name:string
+//     age:number
+//     phone?:number
+// }
+
+// let obj:user={
+//     name:"bjdbjdj",
+//     age:55,
+//     phone:265656  // can define a phone or not it is optional 
+// }
+
+
+// optional parameter in the functions 
+
+// function sum(a:number,b?:number):number{
+//     if(/*check if optional is given or not */ b==undefined){
+//         return a
+//     }else{
+//         // return the work that has to be done 
+//         return a+b
+//     }
+// }
+
+// let a = sum(2);
+// console.log(a);   // give the a only 
+// let c = sum(5,2);
+// console.log(c);  // give the sum 
+
+// spread oprator in ts 
+
+// function sum(a:number,b:number,...c:number[]){
+//     // console.log(a);
+//     // console.log(b);
+
+
+//     return a+b+ c.reduce((sum,def)=>{
+//         return sum+def
+//     },0)
+// }
+
+// let s =sum(1,2,2,1)
+// console.log(s);
+
+// classes and Objets in TS 
+
+
+
+// interface user1{
+//     name:string
+//     age:number
+// }
+
+// class user implements user1{   // we are already defining the type of the method in the interface 
+//     name: string
+//     age: number
+
+//     constructor(name:string,age:number){
+//         this.name=name
+//         this.age=age
+//     }
+//     details(){
+//         return `This person is ${this.name} and it's age is ${this.age}`
+//     }
+
+//     sum(a:number,b:number):number{
+//         return a+b
+//     }
+// }
+
+// let user2=new user("osheen",45)
+// console.log(user2.details());
+// let sum1 = user2.sum(4,5);
+// console.log(sum1);
+
+// classes 
+
+
+// encapsulation : here we are combining the different methods and variables in one class by using the private protected and public keywords 
+// abstraction : it will show what is going on not how it is used before the class keyword as it has nothin in the class it is implemented in other class or method 
+// class coder{   // we have to give access modifier to all 
+//     // public name:string
+//     // private age:number
+//     // protected lang:string[]  // optional way 
+//     constructor(readonly /*means i can only read it can't modify it*/name:string,private age:number,protected lang:string[]){
+//         this.name=name
+//         this.age=age
+//         this.lang=[]
+//     }
+
+//     public getName(){
+//         console.log(this.name);
+//     }
+
+// }
+
+// const user = new coder("osheen",20,["hello" , "typescript"])
+// user.getName()
+
+// // inheritence in TS 
+
+// class webdev extends coder{
+//     constructor(name:string,age:number,lang:string[],public laptop="MacBook Max"){
+//         super(name,age,lang)  // using the parent class to help with the datatype and the access modifier 
+//         this.laptop=laptop
+//     }
+
+//     public details(){
+//         console.log(this.laptop);
+        
+//     }
+// }
+
+// const web = new webdev("osheen",45,["hdshidsa"],"Victus 16 Ultra God")  // if laptop is provided then take it otherwise go for default 
+// web.details()
+
+// // Abstraction in TS 
+
+// abstract class  software {
+//     // use abstract keyword to tell that it will not have any work in it I will use it later if required 
+//     // this is used for something 
+//     abstract getDetails():string // return type of abstract function
+
+//     setting(){
+//         console.log("User Setting");
+//     }
+// }
+
+// class ABC extends software{
+//     constructor(){
+//         super()
+//     }
+
+//     getDetails(): string {
+//         return `This is Data`
+//     }
+// }
+
+// const user2 = new ABC()
+// user2.setting()
+// let ans = user2.getDetails()
+// console.log(ans);
+
+
+// // Interface 
+
+// interface Musician{
+//     name:string
+//     // plays:(action:string , instrument:string)=>void
+//     plays(action:string , instrument:string):string
+// }
+
+// class Singer implements Musician{
+//     name: string;
+//     constructor(name:string){
+//         this.name=name
+//     }
+
+//     plays(action: string, instrument: string): string {
+//         return (`${this.name} ${action} the ${instrument}`)
+//     }
+// }
+
+// const singer1 = new Singer("Bob")
+// const ans1 = singer1.plays("Strums", "Guitar")
+// console.log(ans1);
+
+
+// // Static keyword 
+
+// class User{
+//     static count:number=0;   // use static so no one can use it by creating the object of it 
+//     static getCount():number{   // like count same 
+//         return User.count
+//     }
+
+//     constructor(public name:string){
+//         this.name=name
+//         User.count=++User.count
+//     }
+// }
+
+// const user3 = new User("A")
+// const user4 = new User("B")
+// const user5 = new User("C")
+// const user6 = new User("D")
+
+// console.log(User.getCount());   // using the User as we can't make them for the object 
+
+
+// I want to create a band class which will have getter function to return the number of the people in the band and setter used for setting the data that 
+// if it has array then it is array and all values must be string 
+
+class Bands{
+    private bandMembers:string[]
+    constructor(){
+        this.bandMembers=[]
+    }
+
+    public get ShowData():string[]{
+        return this.bandMembers
+    }
+
+    public set SetData(value:string[]){
+        if(Array.isArray(value) && value.every((data)=>typeof(data)==='string')){
+            this.bandMembers=value
+        }else{
+            throw new Error("This Data is not valid")
+        }
+    }
+}
+
+const ans3=new Bands()
+ans3.SetData=["Sam",  "osheen" , "manoj"]
+console.log(ans3.ShowData);
+
+ans3.SetData=[...ans3.ShowData,"New"]
+console.log(ans3.ShowData);
+
 
 
 
