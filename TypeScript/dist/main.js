@@ -296,26 +296,124 @@ Object.defineProperty(exports, "__esModule", { value: true });
 // console.log(User.getCount());   // using the User as we can't make them for the object 
 // I want to create a band class which will have getter function to return the number of the people in the band and setter used for setting the data that 
 // if it has array then it is array and all values must be string 
-class Bands {
-    bandMembers;
-    constructor() {
-        this.bandMembers = [];
+// class Bands{
+//     private bandMembers:string[]
+//     constructor(){
+//         this.bandMembers=[]
+//     }
+//     public get ShowData():string[]{
+//         return this.bandMembers
+//     }
+//     public set SetData(value:string[]){
+//         if(Array.isArray(value) && value.every((data)=>typeof(data)==='string')){
+//             this.bandMembers=value
+//         }else{
+//             throw new Error("This Data is not valid")
+//         }
+//     }
+// }
+// const ans3=new Bands()
+// ans3.SetData=["Sam",  "osheen" , "manoj"]
+// console.log(ans3.ShowData);
+// ans3.SetData=[...ans3.ShowData,"New"]
+// console.log(ans3.ShowData);
+// Index Signatures in TS 
+// providing type to the key and value of the object 
+// interface User{
+//     readonly [key:string]:number  // readonly will not allow to change the value of the key once it is assigned 
+//     age?:number
+//     pizza?:number
+// }
+// const user1:User={
+//     name:45,
+//     age:78  // i can change the value of age but not name as it is read only due to the readonly defined for the keys not defined in the interface 
+// }
+// user1.age=55
+// user1.pizza=45
+// user1.name=45  // error as it is readonly 
+// type Incomess = "salary" |"bonus"| "sidehustle"
+// // type 1 
+// interface Incomesss{
+//     [key:string]:number|string
+// }  // in this we can have only one type of value for the key but we can have different type of value for the key 
+// type 2
+// Record is a utility type in TypeScript that allows you to create a new type by specifying the keys and their corresponding value types. It is often used to define objects with specific key-value pairs.
+// Record<type of key, type of value>
+// type Inc = Record<Incomess,number | string> 
+// let Incc={
+//     salary:254526545454,
+//     bonus:265654512645,
+//     sidehustle:4564216456215461,
+//     "csknk":46545,
+//     "nxsxknxkasn":"nxsxkn"
+// }
+// // Extracting the Extracting the keys type from the interface
+// for(const key in Incc){
+//     console.log(Incc[key as keyof Inc]);  // here we are using the keyof to tell that it will take the key from the Inc type and then we are using the type assertion to tell that it will be of type key of Inc 
+// }
+// // Extracting the keys type from object
+// for(const key in Incc){
+//     console.log(Incc[key as keyof typeof Incc]); // here we are using the typeof to tell that it will take the type of the Incc object 
+//     // and keyof to take out the keys of the object 
+// }
+// // keyof is used to fetch the type of the key 
+// // typeof is used to fetch the type of the object 
+//Generics in TS 
+// Generics are a powerful feature in TypeScript that provide 
+// a feature that you can provide them any type of data and it will infer it and give you the output according to that type of data
+// generic function
+// const func = <T>(arg:T):T=>arg   T is a type of InterFace here 
+// interface BoolCheck<T>{
+//     arg:T
+//     isObject:boolean
+// }
+// const isObject = <T>(arg:T)=>{
+//     if(typeof arg === "object" && !Array.isArray(arg) && arg !== null){
+//         return {arg , isObject:true}
+//     }
+//     return {arg , isObject:false}
+// }
+// console.log(
+//     isObject({name:"JS"}),
+//     isObject([45]),
+//     isObject(true),
+//     isObject(null)
+// );
+// extending the generic type 
+// let user={
+//     id:1,
+//     name:"something"
+// }
+// interface HasID{
+//     id:number
+// }
+// // interface HasID1{
+// //     name:string
+// // }
+// // interface C extends HasID,HasID1{
+// // }
+// const isUser = <T extends HasID>(arg:T)=>{
+//     // it means that it must have a id property in it of number type 
+// }
+// interface Hasname{
+//     name:string
+// }
+// const user1 = [{name:"Osheen"} , {name:"Anurag"} , {name:"Manoj"} , {name:"Chitranshi"}]
+// const isUser1= <T extends Hasname , k extends keyof T> (arg : T[] , key : k):T[k][]=>{
+//     return arg.map((user)=>user[key])
+// }
+// let ans = isUser1(user1 , "name");
+// console.log(ans);
+// Generic Classes
+class User {
+    name;
+    constructor(name, date) {
+        this.name = name;
     }
-    get ShowData() {
-        return this.bandMembers;
-    }
-    set SetData(value) {
-        if (Array.isArray(value) && value.every((data) => typeof (data) === 'string')) {
-            this.bandMembers = value;
-        }
-        else {
-            throw new Error("This Data is not valid");
-        }
+    get user() {
+        return this.name;
     }
 }
-const ans3 = new Bands();
-ans3.SetData = ["Sam", "osheen", "manoj"];
-console.log(ans3.ShowData);
-ans3.SetData = [...ans3.ShowData, "New"];
-console.log(ans3.ShowData);
+const user = new User("JS", 45);
+console.log(user.user);
 //# sourceMappingURL=main.js.map
