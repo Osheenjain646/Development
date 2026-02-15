@@ -405,15 +405,170 @@ Object.defineProperty(exports, "__esModule", { value: true });
 // let ans = isUser1(user1 , "name");
 // console.log(ans);
 // Generic Classes
-class User {
+// class User<T,k>{
+//     name:T
+//     constructor(name:T,date:k){
+//         this.name=name
+//     }
+//     get user():T{
+//         return this.name
+//     }
+// }
+// const user = new User<string,number>("JS",45);
+// console.log(user.user);
+// Peartial Required and Readonly Record in TS 
+// Partial : it will make all the properties of the type optional 
+// 
+// interface User1{
+//     name:string
+//     age?:number
+// }
+// type PartialUser = Partial<User1>  // all the properties of the User1 type will be optional in the PartialUser type
+// type RequiredUser = Required<PartialUser> // all the properties of the PartialUser type will be required in the RequiredUser type
+// type ReadonlyUser = Readonly<User1> // all the properties of the User1 type will be readonly in the ReadonlyUser type and we can't change the value of the properties once it is assigned
+// type RecordUser = Record<string,number> // it will create a type with the keys of string type and values of number type
+// // This will allow us to create a user with only name property and age is optional
+// const user1:PartialUser={
+//     name:"JS"
+// }
+// // This will not allow us to create a user without name property and age is required
+// const uaer2:RequiredUser={
+//     name:"JS",
+//     age:45
+// }
+// // This will not allow us to change the value of the property once it is assigned
+// const user3:ReadonlyUser={
+//     name:"JS",
+//     age:45
+// }
+// user3.name="TS" // error as it is readonly
+// interface User1{
+//     name:string,
+//     age:number
+// }
+// type UserRecord = Record<string,User1> // it will create a type with the key as string and value as User1 type 
+// const user:UserRecord={
+//     "user1":{
+//         name:"JS",
+//         age:45
+//     }
+// }
+// console.log(user["user1"]);
+// pick omit Exclude Extract in TS
+// pick : it will allow us to pick the properties from the type and create a new type with those properties 
+// omit : it will allow us to omit the properties from the type and create a new type without those properties
+// Exclude : it will allow us to exclude the properties from the union type and create a new type without those properties 
+// Extract : it will allow us to extract the properties from the union type and create a new type with those properties
+// interface User1{
+//     name:string,
+//     age:number,
+//     email:string,
+//     password:string
+// }
+// // Pick and Omit perform via object and interface 
+// type Login = Pick<User1/*Interface from where to pick*/ , "email" | "password"/*properties to pick*/> // it will create a new type with only email and password properties from the User1 interface
+// type SignUp = Omit<User1 , "email" | "password"> // it will create a new type with all the properties except email and password properties from the User1 interface
+// // Exclude and Extract perform via union tyes 
+// type status = "active" | "inactive" | "pending"
+// type ExcludeStatus = Exclude<status , "Active"> // it will create a new type with all the properties except "Active" from the status type
+// type ExtractStatus = Extract<status , "active" | "pending"> // it will create a new type with only "active" and "pending" properties from the status type
+// function main(name:string , age:number){
+//     return{
+//         name:"hndcjn",
+//         age:45,
+//         isactive:true
+//     }
+// }
+// type ReturnTypeOfMain = ReturnType<typeof main> // it will give the return type of the main function 
+// type ParametersOfMain = Parameters<typeof main> // it will give the parameters type of the main function 
+// async function main1():Promise<{name:string}>{
+//     return {name:"TS"}
+// }
+// type p = ReturnType<typeof main1> // it will tell the what can promise return in the future means a wrpper of the promise having the original return type of the function
+// type AW = Awaited<ReturnType<typeof main1>> // it will tell the original return type of the function without the promise wrapper 
+// function getFirstElement<T>(arr:T[]):T{
+//     return arr[0]!    // it can't be undefined so we are using the non null assertion operator to tell that it will not be undefined or null 
+//     return arr[0]!!  // bang operator is used to tell that convert all the falsy value to flase and all the truthy value to true and then it will return the value of the first element of the array
+// }
+// Assignment 1
+// interface User{
+//     id:number,
+//     name:string,
+//     eamil?:string
+//     role:role
+//     isAtive:boolean
+// }
+// // type Assertion 
+// type role = "admin" | "user" | "guest"
+// function createUser(user:User):string{
+//     if(typeof user.eamil===undefined){
+//         return `Email missing`
+//     }
+//     else{
+//         return `User Created`
+//     }
+// }
+// const user1:User={
+//     id:1,
+//     name:"Osheen",
+//     eamil:"bdcsdjbdsjbdcs@gmail.com",
+//     role:"admin",
+//     isAtive:true
+// }
+// function getUserRoleMessage<T extends role>(role:T):string{
+//     if(role==="admin"){
+//         return "Full access"
+//     }else if(role==="user"){
+//         return "Limited access"
+//     }else{
+//         return "Read Only"
+//     }
+// }
+// console.log(createUser(user1));
+// console.log(getUserRoleMessage(user1.role));
+// Assignment 2 
+// function swapValues<T,U>(a:T,b:U):[U,T]{
+//     return [b,a]
+// }
+// function getFirstElement<T>(arr:T[]):T{
+//     return arr[0]!    // it can't be undefined 
+// }
+// Assignment 3
+class Employee {
     name;
-    constructor(name, date) {
+    salary;
+    department;
+    constructor(name, salary, department) {
         this.name = name;
+        this.salary = salary;
+        this.department = department;
     }
-    get user() {
-        return this.name;
+    get getSalary() {
+        return this.salary;
+    }
+    get getDepartment() {
+        return this.department;
     }
 }
-const user = new User("JS", 45);
-console.log(user.user);
+class Manager extends Employee {
+    teamsize;
+    constructor(name, salary, department, teamsize) {
+        super(name, salary, department);
+        this.teamsize = teamsize;
+        this.teamsize = teamsize;
+    }
+    get getManagerDetails() {
+        return `Manager Details: 
+        Manager Name: ${this.name}
+        Department: ${this.getDepartment}
+        Salary: ${this.getSalary}
+        Team Size: ${this.teamsize}`;
+    }
+}
+const manager1 = new Manager("Osheen", 50000, "IT", 10);
+console.log(manager1.getManagerDetails);
+const employee1 = new Employee("Anurag", 30000, "HR");
+console.log(employee1.name);
+console.log(employee1.getSalary);
+console.log(employee1.getDepartment);
 //# sourceMappingURL=main.js.map
