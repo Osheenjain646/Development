@@ -56,14 +56,14 @@
 // let mixeddataarr=["one",true,45222] // have mixed all types 
 
 // stringarr.push("ghdj") // can push only the type of data entered 
-// stringnumberarr=stringarr // can push stingarr as stringnumberarr can have bith number and string value both 
+// stringnumberarr=stringarr // can push stingarr as stringnumberarr can have both number and string value both 
 
 // mixeddataarr.push("hcdjbjc")
 // mixeddataarr.push(5545);
 // mixeddataarr.push(true)
 
 // let arr =  [{name:"TS"} , {user:"TS"}]
-// // arr=mixeddataarr // error 
+// // arr=mixeddataarr // error as arr can only have object type data 
 
 // console.log(stringarr);
 // console.log(stringnumberarr);
