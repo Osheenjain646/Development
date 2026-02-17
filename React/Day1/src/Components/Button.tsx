@@ -9,21 +9,37 @@ import type { ReactNode } from "react"
 //     same as below data 
 // }
 
-const Button = ({children}:{
-    children:ReactNode                // one way 
+type ButtonVaraintTypes = "sm" | "md" | "lg"
+type ButtonVariant = "Primary" | "secondary"
+
+// functional component 
+const Button = ({children,size,varients,disabled}:{
+    children:ReactNode
+    size:ButtonVaraintTypes
+    varients:ButtonVariant
+    disabled:boolean 
 }) => {
 
-    type ButtonVaraintTypes = "sm" | "md" | "lg"
+  type ButtonSize = Record<ButtonVaraintTypes , string>
+  type ButtonVarient = Record<ButtonVariant , string>
 
-    type ButtonVariant = Record<ButtonVaraintTypes , string>
+  const sizes:ButtonSize={
+    "sm":"w-20 h-5 px-5 py-5 border-2 rounded-md flex justify-center items-center",
+    "md":"w-30 h-7 px-5 py-5 border-2 rounded-md flex justify-center items-center",
+    "lg":"w-40 h-10 px-5 py-5 border-2 rounded-md flex justify-center items-center"
+  }
 
-
+  const vareint:ButtonVarient={
+    "Primary":"bg-black text-white",
+    "secondary":"text-black"
+  }
 
   return (
-    <Button>
+    <button className={`${sizes[size]} ${vareint[varients]}`} disabled={disabled}>
         {children}
-    </Button>
+    </button>
   )
 }
 
 export default Button
+
