@@ -1,7 +1,8 @@
 // rafce used to create a function component
 // if you don't want to specify tag name then make fragments <>[]<>
 
-import Events from "./Components/Events"
+// import Events from "./Components/Events"
+import Basic from "./Hooks/usestatehookinreact"
 
 
 // import Mainpage from "./Components/Mainpage"
@@ -33,7 +34,8 @@ import Events from "./Components/Events"
 const App = () => {
   return(
     <div>
-      <Events></Events>
+      {/* <Events></Events> */}
+      <Basic></Basic>
     </div>
   )
 }
