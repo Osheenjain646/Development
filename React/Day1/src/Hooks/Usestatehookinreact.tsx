@@ -142,7 +142,7 @@ import { useState } from "react"
 
 // function in use state 
 
-const Basic = () => {
+const UseStateHook = () => {
 
     const [count,setcount] = useState(()=>{
         const initialval = Math.floor(Math.random()*(100-50))
@@ -166,5 +166,5 @@ const Basic = () => {
   )
 }
 
-export default Basic
+export default UseStateHook
 

@@ -1,8 +1,11 @@
 // rafce used to create a function component
 // if you don't want to specify tag name then make fragments <>[]<>
 
+import Useeffecthook from "./Hooks/Useeffecthookinreact"
+import Userefhook from "./Hooks/Userefhookinreact"
+import UseStateHook from "./Hooks/Usestatehookinreact"
+
 // import Events from "./Components/Events"
-import Basic from "./Hooks/usestatehookinreact"
 
 
 // import Mainpage from "./Components/Mainpage"
@@ -35,7 +38,9 @@ const App = () => {
   return(
     <div>
       {/* <Events></Events> */}
-      <Basic></Basic>
+      {/* <UseStateHook></UseStateHook> */}
+      {/* <Useeffecthook></Useeffecthook> */}
+      <Userefhook></Userefhook>
     </div>
   )
 }
