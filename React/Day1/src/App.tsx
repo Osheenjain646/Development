@@ -2,6 +2,7 @@
 // if you don't want to specify tag name then make fragments <>[]<>
 
 import Useeffecthook from "./Hooks/Useeffecthookinreact"
+import Usememohook from "./Hooks/Usememohookinreact"
 import Userefhook from "./Hooks/Userefhookinreact"
 import UseStateHook from "./Hooks/Usestatehookinreact"
 
@@ -40,7 +41,8 @@ const App = () => {
       {/* <Events></Events> */}
       {/* <UseStateHook></UseStateHook> */}
       {/* <Useeffecthook></Useeffecthook> */}
-      <Userefhook></Userefhook>
+      {/* <Userefhook></Userefhook> */}
+      <Usememohook></Usememohook>
     </div>
   )
 }
