@@ -1,4 +1,4 @@
-// use to manage the sideeffect 
+// use to manage the sideEffect 
 // means that the data will be fetched only once from DB 
 
 // import { useEffect, useState } from "react"
@@ -26,6 +26,8 @@
 // }
 
 // export default Useeffecthook
+
+// *** only run after the rendering of the website 
 
 import React, { useEffect, useState } from 'react'
 
