@@ -29,7 +29,7 @@
 
 // *** only run after the rendering of the website 
 
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 
 interface IUser{
     userId:number,
