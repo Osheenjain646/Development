@@ -1,3 +1,4 @@
+// Ternary Operator 
 // condition ? "true" : "false"
 
 // let age=45;
@@ -8,6 +9,7 @@
 // let temp=25
 // let ans= temp>25?"Hot Day" : (15<=temp && temp<=25 ? "Moderate" : "Cold Day")
 // console.log(ans);
+
 // use if-else for cleaner way 
 
 // Nullish coelesence operator 
@@ -24,28 +26,33 @@
 // console.log(User);
 
 // primitive and Non primitive 
+
 // primitive 
+
 // number 
 // let a=45;
-// let b=45.23
+// let b=45.23 
+
 //string
 // let a='hd'
-// let b="cbujb"
+// let b="cbujb" 
+
 //BigInt
 // let a = 6464646652626364665265; // this give it in power of exponential 
 //then use 
 // let a = 26452645126126552656416496n //this will give value 
+
 // boolean 
 // true and false
 // null and undefined 
-// let a;
+// let a;  // Unintentially assigning null so undefined 
 // console.log(a);// undefined // falsy 
 // let a=null //truthy 
 // console.log(a);
-// console.log(typeof null);
-// console.log(typeof undefined);
+// console.log(typeof null);  // object type 
+// console.log(typeof undefined);  // undefined type 
 
-// let name=undefined??null // as null is truthy
+// let name=undefined??null // as null is truthy will give null 
 // console.log(name);
 
 // Symbol 
@@ -75,7 +82,7 @@
 // let b=a
 // // console.log(b);
 
-// b.name="Typescript"
+// b.name="Typescript"  // change the name key data 
 // console.log(a);
 // console.log(b);
 
