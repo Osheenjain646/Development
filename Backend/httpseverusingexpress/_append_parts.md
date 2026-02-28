@@ -1,620 +1,10 @@
-# Express.js — Complete Notes 🚀
+const fs = require('fs');
+const path = require('path');
 
-> A comprehensive, example-driven guide to building web servers and REST APIs with Express.js.
+const file = path.join(__dirname, 'Express.md');
 
-## Table of Contents
-
-1. [What is Express.js?](#1-what-is-expressjs)
-2. [Why Use Express?](#2-why-use-express)
-3. [Installation & Setup](#3-installation--setup)
-4. [Basic Server Creation](#4-basic-server-creation)
-5. [Request-Response Cycle](#5-request-response-cycle)
-6. [Routing](#6-routing)
-7. [HTTP Methods & CRUD](#7-http-methods--crud)
-8. [Route Parameters & Query Strings](#8-route-parameters--query-strings)
-9. [Middleware](#9-middleware)
-10. [Request & Response Objects](#10-request--response-objects)
-11. [Static Files](#11-static-files)
-12. [Error Handling](#12-error-handling)
-13. [RESTful API — Full Example](#13-restful-api--full-example)
-14. [Async/Await & Promises](#14-asyncawait--promises)
-15. [Environment Variables](#15-environment-variables)
-16. [Template Engines (EJS)](#16-template-engines-ejs)
-17. [Express Router — Modular Routes](#17-express-router--modular-routes)
-18. [CORS, Helmet & Rate Limiting](#18-cors-helmet--rate-limiting)
-19. [JWT Authentication](#19-jwt-authentication)
-20. [Best Practices](#20-best-practices)
-21. [Quick Reference Cheatsheet](#21-quick-reference-cheatsheet)
-
----
-
-## 1. What is Express.js?
-
-Express.js is a **minimalist**, **flexible**, and **fast** web application framework built on top of Node.js. It provides a thin layer over the built-in `http` module with powerful routing, middleware, and utility features.
-
-```
-┌──────────────────────────────────────────────────────────────────┐
-│                         EXPRESS.JS                               │
-│                                                                  │
-│   Node.js (http module)  ──▶  Express.js  ──▶  Your App         │
-│                                                                  │
-│   ┌──────────┐   HTTP Request    ┌───────────────┐              │
-│   │  Client  │ ────────────────▶ │  Express App  │              │
-│   │ (Browser)│ ◀──────────────── │  (Server)     │              │
-│   └──────────┘   HTTP Response   └───────┬───────┘              │
-│                                          │                       │
-│                               ┌──────────▼──────────┐           │
-│                               │  Database / Files /  │           │
-│                               │  External APIs        │           │
-│                               └─────────────────────┘           │
-│                                                                  │
-│   Minimal • Flexible • Fast • Middleware-Based                   │
-└──────────────────────────────────────────────────────────────────┘
-```
-
-### Key Points
-| Feature | Description |
-|---------|-------------|
-| **Open-source** | Free to use, MIT licensed |
-| **Minimalist** | Only essential features; extend as needed |
-| **Middleware** | Modular, reusable request/response pipeline |
-| **RESTful Routing** | Easy to create REST APIs |
-| **Template Engines** | Supports EJS, Pug, Handlebars, etc. |
-| **Huge Ecosystem** | Thousands of npm packages integrate seamlessly |
-
----
-
-## 2. Why Use Express?
-
-### Raw Node.js vs Express.js
-
-```
-┌──────────────────────────────────────────────────────────────────┐
-│             RAW NODE.JS  (verbose, manual)                       │
-├──────────────────────────────────────────────────────────────────┤
-│                                                                  │
-│  const http = require('http');                                   │
-│  const server = http.createServer((req, res) => {               │
-│      if (req.method === 'GET' && req.url === '/home') {          │
-│          res.writeHead(200, {'Content-Type': 'text/plain'});     │
-│          res.end('Welcome home');                                 │
-│      } else if (req.method === 'POST' && req.url === '/data') {  │
-│          // Manually read and parse body...                       │
-│          let body = '';                                           │
-│          req.on('data', chunk => body += chunk);                 │
-│          req.on('end', () => { /* parse body */ });              │
-│      }                                                           │
-│  });                                                             │
-│                                                                  │
-│  ❌ Manual routing logic         ❌ Manual body parsing           │
-│  ❌ No middleware support        ❌ Very verbose code             │
-└──────────────────────────────────────────────────────────────────┘
-
-┌──────────────────────────────────────────────────────────────────┐
-│                     EXPRESS.JS  (clean, expressive)             │
-├──────────────────────────────────────────────────────────────────┤
-│                                                                  │
-│  const express = require('express');                             │
-│  const app = express();                                          │
-│  app.use(express.json());                                        │
-│                                                                  │
-│  app.get('/home', (req, res) => res.send('Welcome home'));       │
-│                                                                  │
-│  app.post('/data', (req, res) => {                               │
-│      const data = req.body; // ✅ Already parsed!               │
-│      res.json({ received: data });                               │
-│  });                                                             │
-│                                                                  │
-│  ✅ Simple routing               ✅ Built-in body parsing         │
-│  ✅ Middleware support           ✅ Clean, concise code           │
-└──────────────────────────────────────────────────────────────────┘
-```
-
----
-
-## 3. Installation & Setup
-
-### Step 1 — Initialize a Node.js Project
-
-```bash
-mkdir my-express-app
-cd my-express-app
-npm init -y
-```
-
-### Step 2 — Install Express
-
-```bash
-# Install latest Express
-npm install express
-
-# Install specific version
-npm install express@4.18.2
-
-# Install development helper (auto-restart)
-npm install --save-dev nodemon
-```
-
-### Step 3 — package.json
-
-```json
-{
-  "name": "my-express-app",
-  "version": "1.0.0",
-  "main": "index.js",
-  "scripts": {
-    "start": "node index.js",
-    "dev": "nodemon index.js"
-  },
-  "dependencies": {
-    "express": "^4.18.2"
-  },
-  "devDependencies": {
-    "nodemon": "^3.0.0"
-  }
-}
-```
-
-### Recommended Project Structure
-
-```
-my-express-app/
-├── config/
-│   └── db.js               ← Database connection
-├── controllers/
-│   └── userController.js   ← Business logic
-├── middleware/
-│   └── auth.js             ← Custom middleware
-├── models/
-│   └── User.js             ← DB models / schemas
-├── routes/
-│   └── userRoutes.js       ← Route definitions
-├── public/
-│   ├── css/styles.css
-│   ├── js/app.js
-│   └── images/
-├── views/
-│   └── index.ejs           ← Templates
-├── .env                    ← Environment variables
-├── .gitignore
-├── index.js                ← Entry point
-└── package.json
-```
-
----
-
-## 4. Basic Server Creation
-
-```javascript
-// index.js
-const express = require('express');
-const app = express();
-const PORT = 3000;
-
-// Basic route
-app.get('/', (req, res) => {
-    res.send('Hello World! 👋');
-});
-
-// Start the server
-app.listen(PORT, () => {
-    console.log(`✅ Server running at http://localhost:${PORT}`);
-});
-```
-
-### Run the Server
-
-```bash
-# Using node directly
-node index.js
-
-# Using nodemon (auto-restart on file changes)
-npm run dev
-```
-
-### Server Startup Flow
-
-```
-┌──────────────────────────────────────────────────────────────────┐
-│                       SERVER LIFECYCLE                           │
-│                                                                  │
-│  STEP 1 ─ require('express')      Load the Express module       │
-│              │                                                   │
-│              ▼                                                   │
-│  STEP 2 ─ express()               Create the app instance       │
-│              │                                                   │
-│              ▼                                                   │
-│  STEP 3 ─ app.use(middleware)     Register middleware            │
-│              │                                                   │
-│              ▼                                                   │
-│  STEP 4 ─ app.get/post/...()      Define route handlers         │
-│              │                                                   │
-│              ▼                                                   │
-│  STEP 5 ─ app.listen(PORT)        Bind to a port & start        │
-│              │                                                   │
-│              ▼                                                   │
-│  STEP 6 ─ Waiting for requests… ──────────────────────▶         │
-└──────────────────────────────────────────────────────────────────┘
-```
-
----
-
-## 5. Request-Response Cycle
-
-Every HTTP request goes through this pipeline:
-
-```
-┌──────────────────────────────────────────────────────────────────────┐
-│                    REQUEST-RESPONSE CYCLE                            │
-│                                                                      │
-│  ┌────────┐                                                          │
-│  │ Client │──── HTTP Request ──────────────────────────────────┐    │
-│  └────────┘                                                    │    │
-│                                                                ▼    │
-│                                               ┌───────────────────┐ │
-│                                               │  Middleware 1     │ │
-│                                               │  (Logger)         │ │
-│                                               └────────┬──────────┘ │
-│                                                        │ next()      │
-│                                                        ▼            │
-│                                               ┌───────────────────┐ │
-│                                               │  Middleware 2     │ │
-│                                               │  (Body Parser)    │ │
-│                                               └────────┬──────────┘ │
-│                                                        │ next()      │
-│                                                        ▼            │
-│                                               ┌───────────────────┐ │
-│                                               │  Middleware 3     │ │
-│                                               │  (Auth Check)     │ │
-│                                               └────────┬──────────┘ │
-│                                                        │ next()      │
-│                                                        ▼            │
-│                                               ┌───────────────────┐ │
-│                                               │  Route Handler    │ │
-│                                               │  app.get('/...')  │ │
-│                                               └────────┬──────────┘ │
-│                                                        │            │
-│                                                        ▼            │
-│  ┌────────┐ ◀──── HTTP Response ──────────────────────┘            │
-│  │ Client │                                                         │
-│  └────────┘                                                         │
-└──────────────────────────────────────────────────────────────────────┘
-```
-
-### Code Example
-
-```javascript
-const express = require('express');
-const app = express();
-
-// Middleware runs in ORDER — top to bottom
-app.use((req, res, next) => {
-    console.log(`[${new Date().toISOString()}] ${req.method} ${req.url}`);
-    next(); // ← MUST call next() to continue the chain
-});
-
-app.use(express.json()); // Parse incoming JSON bodies
-
-app.get('/', (req, res) => {
-    res.send('Welcome to Express!');
-});
-
-app.listen(3000);
-```
-
-> **⚠️ Key Rule:** Always call `next()` inside middleware, or the request will hang forever!
-
----
-
-## 6. Routing
-
-Routing determines how an application responds to client requests for a specific endpoint (URL + HTTP method).
-
-### Route Anatomy
-
-```
-┌──────────────────────────────────────────────────────────────────┐
-│                       ROUTE ANATOMY                              │
-│                                                                  │
-│   app  .get  ( '/users/:id'  ,  (req, res) => { ... } )         │
-│    │     │         │                    │                        │
-│    │     │         │                    └─ Route Handler         │
-│    │     │         └─ Path (can have params)                     │
-│    │     └─ HTTP Method                                          │
-│    └─ Express App Instance                                       │
-│                                                                  │
-│   URL:  http://localhost:3000/users/123?name=john                │
-│                              │           │                       │
-│                              │           └─ Query String         │
-│                              └─ Route Path with Param            │
-└──────────────────────────────────────────────────────────────────┘
-```
-
-### Basic Routing
-
-```javascript
-const express = require('express');
-const app = express();
-
-// GET — Retrieve data
-app.get('/home', (req, res) => {
-    res.send('Home Page');
-});
-
-// POST — Create data
-app.post('/submit', (req, res) => {
-    res.send('Form Submitted');
-});
-
-// PUT — Replace/update data
-app.put('/update/:id', (req, res) => {
-    res.send(`Updated record ${req.params.id}`);
-});
-
-// PATCH — Partially update data
-app.patch('/patch/:id', (req, res) => {
-    res.send(`Patched record ${req.params.id}`);
-});
-
-// DELETE — Remove data
-app.delete('/delete/:id', (req, res) => {
-    res.send(`Deleted record ${req.params.id}`);
-});
-
-// ALL — Match any HTTP method
-app.all('/any', (req, res) => {
-    res.send(`You used: ${req.method}`);
-});
-
-app.listen(3000, () => console.log('Server on port 3000'));
-```
-
-### Routing Table (REST Convention)
-
-```
-┌──────────────────────────────────────────────────────────────────┐
-│                   REST ROUTING TABLE                             │
-├──────────┬─────────────────────┬──────────────────────────────┤
-│  METHOD  │  ENDPOINT           │  DESCRIPTION                  │
-├──────────┼─────────────────────┼──────────────────────────────┤
-│  GET     │  /users             │  Get all users                │
-│  GET     │  /users/:id         │  Get user by ID               │
-│  POST    │  /users             │  Create a new user            │
-│  PUT     │  /users/:id         │  Full update of a user        │
-│  PATCH   │  /users/:id         │  Partial update of a user     │
-│  DELETE  │  /users/:id         │  Delete a user                │
-└──────────┴─────────────────────┴──────────────────────────────┘
-```
-
-### Multiple Handlers (Chained Middleware on a Route)
-
-```javascript
-// You can pass multiple handler functions to a single route
-const logRequest = (req, res, next) => {
-    console.log('Logging...');
-    next();
-};
-
-const checkAuth = (req, res, next) => {
-    if (!req.headers.authorization) {
-        return res.status(401).json({ error: 'Unauthorized' });
-    }
-    next();
-};
-
-app.get('/dashboard', logRequest, checkAuth, (req, res) => {
-    res.send('Welcome to dashboard!');
-});
-```
-
----
-
-## 7. HTTP Methods & CRUD
-
-### HTTP Status Codes Reference
-
-```
-┌──────────────────────────────────────────────────────────────────┐
-│                     HTTP STATUS CODES                            │
-├────────────┬─────────────────────────────────────────────────────┤
-│  CODE      │  MEANING                                            │
-├────────────┼─────────────────────────────────────────────────────┤
-│  200 OK    │  Request succeeded                                  │
-│  201 Created│ Resource successfully created                      │
-│  204 No Content│ Success, nothing to return                      │
-│  301 Moved │  Permanent redirect                                 │
-│  302 Found │  Temporary redirect                                 │
-│  400 Bad Request│ Client sent invalid data                       │
-│  401 Unauthorized│ Authentication required                       │
-│  403 Forbidden│  Authenticated but no permission                 │
-│  404 Not Found│  Resource does not exist                         │
-│  409 Conflict│   Duplicate entry / state conflict                │
-│  422 Unprocessable│ Validation failed                            │
-│  500 Internal│  Server-side error                                │
-│  503 Unavailable│ Server temporarily down                        │
-└────────────┴─────────────────────────────────────────────────────┘
-```
-
-### Complete CRUD Example
-
-```javascript
-const express = require('express');
-const app = express();
-app.use(express.json()); // Required to parse JSON request bodies
-
-// In-memory "database"
-let users = [
-    { id: 1, name: 'John Doe',   email: 'john@example.com', age: 25 },
-    { id: 2, name: 'Jane Smith', email: 'jane@example.com', age: 30 }
-];
-let nextId = 3;
-
-// ── GET all users ──────────────────────────────────────────────
-app.get('/api/users', (req, res) => {
-    res.status(200).json({
-        success: true,
-        count: users.length,
-        data: users
-    });
-});
-
-// ── GET single user by ID ──────────────────────────────────────
-app.get('/api/users/:id', (req, res) => {
-    const user = users.find(u => u.id === parseInt(req.params.id));
-    if (!user) {
-        return res.status(404).json({ success: false, message: 'User not found' });
-    }
-    res.json({ success: true, data: user });
-});
-
-// ── POST — Create a new user ───────────────────────────────────
-app.post('/api/users', (req, res) => {
-    const { name, email, age } = req.body;
-
-    if (!name || !email) {
-        return res.status(400).json({ success: false, message: 'name and email are required' });
-    }
-
-    if (users.find(u => u.email === email)) {
-        return res.status(409).json({ success: false, message: 'Email already exists' });
-    }
-
-    const newUser = { id: nextId++, name, email, age: age || 18 };
-    users.push(newUser);
-
-    res.status(201).json({ success: true, data: newUser });
-});
-
-// ── PUT — Full replace of a user ───────────────────────────────
-app.put('/api/users/:id', (req, res) => {
-    const index = users.findIndex(u => u.id === parseInt(req.params.id));
-    if (index === -1) {
-        return res.status(404).json({ success: false, message: 'User not found' });
-    }
-    const { name, email, age } = req.body;
-    users[index] = { id: users[index].id, name, email, age };
-    res.json({ success: true, data: users[index] });
-});
-
-// ── PATCH — Partial update ─────────────────────────────────────
-app.patch('/api/users/:id', (req, res) => {
-    const user = users.find(u => u.id === parseInt(req.params.id));
-    if (!user) {
-        return res.status(404).json({ success: false, message: 'User not found' });
-    }
-    // Only update provided fields
-    Object.assign(user, req.body);
-    res.json({ success: true, data: user });
-});
-
-// ── DELETE — Remove a user ─────────────────────────────────────
-app.delete('/api/users/:id', (req, res) => {
-    const index = users.findIndex(u => u.id === parseInt(req.params.id));
-    if (index === -1) {
-        return res.status(404).json({ success: false, message: 'User not found' });
-    }
-    const deleted = users.splice(index, 1)[0];
-    res.json({ success: true, message: 'User deleted', data: deleted });
-});
-
-app.listen(3000, () => console.log('API running on http://localhost:3000'));
-```
-
----
-
-## 8. Route Parameters & Query Strings
-
-### The Difference
-
-```
-┌──────────────────────────────────────────────────────────────────┐
-│            ROUTE PARAMS  vs  QUERY STRINGS                       │
-│                                                                  │
-│  URL: /users/42/posts/7?sort=asc&page=2                         │
-│                                                                  │
-│  Route Params  (part of the URL path, required):                │
-│    :userId = "42"                                                │
-│    :postId = "7"                                                 │
-│                                                                  │
-│  Query Strings (after ?, optional key=value pairs):             │
-│    sort  = "asc"                                                 │
-│    page  = "2"                                                   │
-│                                                                  │
-│  Access in Express:                                              │
-│    req.params.userId   → "42"                                   │
-│    req.params.postId   → "7"                                    │
-│    req.query.sort      → "asc"                                  │
-│    req.query.page      → "2"  (always a string!)               │
-└──────────────────────────────────────────────────────────────────┘
-```
-
-### Route Parameters
-
-```javascript
-// Single parameter
-app.get('/users/:id', (req, res) => {
-    console.log(req.params.id); // e.g. "42"
-    res.json({ userId: req.params.id });
-});
-
-// Multiple parameters
-app.get('/users/:userId/posts/:postId', (req, res) => {
-    const { userId, postId } = req.params;
-    res.json({ userId, postId });
-});
-
-// Optional parameter (use ? suffix)
-app.get('/files/:filename?', (req, res) => {
-    if (req.params.filename) {
-        res.send(`File: ${req.params.filename}`);
-    } else {
-        res.send('No file specified');
-    }
-});
-```
-
-### Query Strings
-
-```javascript
-// URL: /search?q=express&sort=date&page=2&limit=10
-app.get('/search', (req, res) => {
-    const {
-        q,
-        sort  = 'relevance',  // default value
-        page  = 1,
-        limit = 10
-    } = req.query;
-
-    res.json({
-        query: q,
-        sort,
-        page:  parseInt(page),
-        limit: parseInt(limit)
-    });
-});
-```
-
-### Combined Real-World Example
-
-```javascript
-// GET /products/electronics?minPrice=100&maxPrice=5000&sort=price&page=1
-app.get('/products/:category', (req, res) => {
-    const { category }  = req.params;
-    const { minPrice, maxPrice, sort, page = 1 } = req.query;
-
-    // Simulate filtering
-    const results = {
-        category,
-        filters: { minPrice, maxPrice },
-        sort,
-        page: parseInt(page),
-        products: []  // would come from DB
-    };
-
-    res.json({ success: true, data: results });
-});
-```
-
+// ─── PART 2 ───────────────────────────────────────────────────
+const part2 = `
 
 ---
 
@@ -622,7 +12,7 @@ app.get('/products/:category', (req, res) => {
 
 Middleware functions are functions that have access to **req** (request), **res** (response), and **next** — called one after another in a pipeline.
 
-```
+\`\`\`
 ┌──────────────────────────────────────────────────────────────────┐
 │                     MIDDLEWARE CHAIN                             │
 │                                                                  │
@@ -648,11 +38,11 @@ Middleware functions are functions that have access to **req** (request), **res*
 │  │  Route Handler  │  Business logic + sends response           │
 │  └─────────────────┘                                             │
 └──────────────────────────────────────────────────────────────────┘
-```
+\`\`\`
 
 ### All 5 Types of Middleware
 
-```javascript
+\`\`\`javascript
 const express = require('express');
 const app = express();
 
@@ -692,11 +82,11 @@ app.use((err, req, res, next) => {
     console.error(err.stack);
     res.status(err.status || 500).json({ error: err.message });
 });
-```
+\`\`\`
 
 ### Custom Middleware Examples
 
-```javascript
+\`\`\`javascript
 // Authentication middleware
 const requireAuth = (req, res, next) => {
     const token = req.headers['authorization']?.split(' ')[1];
@@ -731,7 +121,7 @@ const timer = (req, res, next) => {
     next();
 };
 app.use(timer);
-```
+\`\`\`
 
 ---
 
@@ -739,7 +129,7 @@ app.use(timer);
 
 ### Request Object (req)
 
-```
+\`\`\`
 ┌──────────────────────────────────────────────────────────────────┐
 │                    REQUEST OBJECT (req)                          │
 ├──────────────────────┬───────────────────────────────────────────┤
@@ -760,11 +150,11 @@ app.use(timer);
 │  req.is(type)        │  Check if Content-Type matches            │
 │  req.app             │  Reference to the Express app             │
 └──────────────────────┴───────────────────────────────────────────┘
-```
+\`\`\`
 
 ### Response Object (res)
 
-```
+\`\`\`
 ┌──────────────────────────────────────────────────────────────────┐
 │                   RESPONSE OBJECT (res)                          │
 ├──────────────────────┬───────────────────────────────────────────┤
@@ -783,11 +173,11 @@ app.use(timer);
 │  res.end()           │  End response without body                │
 │  res.locals          │  Share data with templates                │
 └──────────────────────┴───────────────────────────────────────────┘
-```
+\`\`\`
 
 ### Practical Examples
 
-```javascript
+\`\`\`javascript
 app.get('/info', (req, res) => {
     // Reading from req
     console.log(req.method);              // 'GET'
@@ -811,13 +201,13 @@ app.post('/create', (req, res) => {
        .set('X-App-Version', '1.0.0')
        .json({ created: true, data: req.body });
 });
-```
+\`\`\`
 
 ---
 
 ## 11. Static Files
 
-```
+\`\`\`
 ┌──────────────────────────────────────────────────────────────────┐
 │                   STATIC FILE SERVING                            │
 │                                                                  │
@@ -830,9 +220,9 @@ app.post('/create', (req, res) => {
 │  With virtual prefix /static:                                   │
 │  └── logo.png          → /static/images/logo.png               │
 └──────────────────────────────────────────────────────────────────┘
-```
+\`\`\`
 
-```javascript
+\`\`\`javascript
 const express = require('express');
 const path = require('path');
 const app = express();
@@ -860,13 +250,13 @@ app.use('/files', express.static(path.join(__dirname, 'public'), {
 }));
 
 app.listen(3000);
-```
+\`\`\`
 
 ---
 
 ## 12. Error Handling
 
-```
+\`\`\`
 ┌──────────────────────────────────────────────────────────────────┐
 │                    ERROR HANDLING FLOW                           │
 │                                                                  │
@@ -884,9 +274,9 @@ app.listen(3000);
 │                                        ▼                         │
 │                             res.status(code).json(error)         │
 └──────────────────────────────────────────────────────────────────┘
-```
+\`\`\`
 
-```javascript
+\`\`\`javascript
 const express = require('express');
 const app = express();
 app.use(express.json());
@@ -940,13 +330,13 @@ app.use((err, req, res, next) => {
 });
 
 app.listen(3000);
-```
+\`\`\`
 
 ---
 
 ## 13. RESTful API — Full Example
 
-```javascript
+\`\`\`javascript
 // Paste this into index.js and run: node index.js
 const express = require('express');
 const app = express();
@@ -1018,11 +408,11 @@ app.use((req, res) => res.status(404).json({ error: 'Not found' }));
 app.use((err, req, res, next) => res.status(500).json({ error: err.message }));
 
 app.listen(PORT, () => console.log('API: http://localhost:' + PORT + '/api/todos'));
-```
+\`\`\`
 
 ### Testing with cURL
 
-```bash
+\`\`\`bash
 # List all todos
 curl http://localhost:3000/api/todos
 
@@ -1030,13 +420,13 @@ curl http://localhost:3000/api/todos
 curl "http://localhost:3000/api/todos?done=false"
 
 # Create
-curl -X POST http://localhost:3000/api/todos \
-  -H "Content-Type: application/json" \
+curl -X POST http://localhost:3000/api/todos \\
+  -H "Content-Type: application/json" \\
   -d '{"title":"Deploy to production"}'
 
 # Update
-curl -X PUT http://localhost:3000/api/todos/1 \
-  -H "Content-Type: application/json" \
+curl -X PUT http://localhost:3000/api/todos/1 \\
+  -H "Content-Type: application/json" \\
   -d '{"title":"Learn Express JS","done":true}'
 
 # Toggle done
@@ -1044,13 +434,13 @@ curl -X PATCH http://localhost:3000/api/todos/1/toggle
 
 # Delete
 curl -X DELETE http://localhost:3000/api/todos/2
-```
+\`\`\`
 
 ---
 
 ## 14. Async/Await & Promises
 
-```javascript
+\`\`\`javascript
 // ── Pattern 1: try/catch in each handler ──────────────────────
 app.get('/users', async (req, res, next) => {
     try {
@@ -1084,36 +474,40 @@ app.get('/auto-catch', async (req, res) => {
     const data = await riskyAsyncOperation(); // no try/catch needed
     res.json({ data });
 });
-```
+\`\`\`
 
+`;
+fs.appendFileSync(file, part2, 'utf8');
 
+// ─── PART 3 ───────────────────────────────────────────────────
+const part3 = `
 ---
 
 ## 15. Environment Variables
 
-Never hard-code secrets! Use environment variables with the `dotenv` package.
+Never hard-code secrets! Use environment variables with the \`dotenv\` package.
 
 ### Setup
 
-```bash
+\`\`\`bash
 npm install dotenv
-```
+\`\`\`
 
 ### .env file
 
-```
+\`\`\`
 PORT=3000
 NODE_ENV=development
 DB_URI=mongodb://localhost:27017/mydb
 JWT_SECRET=supersecretkey123
 CORS_ORIGIN=http://localhost:3001
-```
+\`\`\`
 
-> **IMPORTANT:** Add `.env` to your `.gitignore` — never commit secrets!
+> **IMPORTANT:** Add \`.env\` to your \`.gitignore\` — never commit secrets!
 
 ### Using in index.js
 
-```javascript
+\`\`\`javascript
 // Must be at the VERY TOP before any other imports
 require('dotenv').config();
 
@@ -1137,21 +531,21 @@ app.get('/', (req, res) => {
 app.listen(PORT, () => {
     console.log('Server running on port ' + PORT + ' [' + NODE_ENV + ']');
 });
-```
+\`\`\`
 
 ### Different .env files per environment
 
-```bash
+\`\`\`bash
 .env              # Default
 .env.development  # Dev overrides
 .env.production   # Prod overrides
 .env.test         # Test overrides
-```
+\`\`\`
 
-```javascript
+\`\`\`javascript
 // Load the right file based on NODE_ENV
 require('dotenv').config({ path: '.env.' + (process.env.NODE_ENV || 'development') });
-```
+\`\`\`
 
 ---
 
@@ -1161,7 +555,7 @@ Template engines let you render dynamic HTML on the server.
 
 ### Available Template Engines
 
-```
+\`\`\`
 ┌──────────────────────────────────────────────────────────────────┐
 │              TEMPLATE ENGINES IN EXPRESS                         │
 ├──────────────┬───────────────────────────────────────────────────┤
@@ -1172,15 +566,15 @@ Template engines let you render dynamic HTML on the server.
 │  Handlebars  │  {{variable}} — logicless Mustache variant        │
 │  Mustache    │  {{variable}} — strictly logicless                │
 └──────────────┴───────────────────────────────────────────────────┘
-```
+\`\`\`
 
 ### EJS Setup
 
-```bash
+\`\`\`bash
 npm install ejs
-```
+\`\`\`
 
-```javascript
+\`\`\`javascript
 const express = require('express');
 const path = require('path');
 const app = express();
@@ -1208,11 +602,11 @@ app.get('/about', (req, res) => {
 });
 
 app.listen(3000);
-```
+\`\`\`
 
 ### views/index.ejs
 
-```html
+\`\`\`html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -1243,11 +637,11 @@ app.listen(3000);
     <%- include('partials/footer') %>
 </body>
 </html>
-```
+\`\`\`
 
 ### EJS Tags Reference
 
-```
+\`\`\`
 ┌──────────────────────────────────────────────────────────────────┐
 │                    EJS TAGS QUICK REFERENCE                      │
 ├──────────────┬───────────────────────────────────────────────────┤
@@ -1260,15 +654,15 @@ app.listen(3000);
 │  <%- include │  Include a partial template file                  │
 │    ('file')%>│                                                   │
 └──────────────┴───────────────────────────────────────────────────┘
-```
+\`\`\`
 
 ---
 
 ## 17. Express Router — Modular Routes
 
-As apps grow, keep routes organized in separate files using `express.Router()`.
+As apps grow, keep routes organized in separate files using \`express.Router()\`.
 
-```
+\`\`\`
 ┌──────────────────────────────────────────────────────────────────┐
 │                    EXPRESS ROUTER STRUCTURE                      │
 │                                                                  │
@@ -1285,11 +679,11 @@ As apps grow, keep routes organized in separate files using `express.Router()`.
 │      router.put('/:id')     → PUT  /api/users/1                 │
 │      router.delete('/:id')  → DELETE /api/users/1               │
 └──────────────────────────────────────────────────────────────────┘
-```
+\`\`\`
 
 ### routes/users.js
 
-```javascript
+\`\`\`javascript
 const express = require('express');
 const router = express.Router();
 
@@ -1337,11 +731,11 @@ router.delete('/:id', (req, res) => {
 });
 
 module.exports = router;
-```
+\`\`\`
 
 ### index.js (main app)
 
-```javascript
+\`\`\`javascript
 require('dotenv').config();
 const express = require('express');
 const app = express();
@@ -1368,7 +762,7 @@ app.use((err, req, res, next) => {
 });
 
 app.listen(PORT, () => console.log('http://localhost:' + PORT));
-```
+\`\`\`
 
 ---
 
@@ -1378,11 +772,11 @@ app.listen(PORT, () => console.log('http://localhost:' + PORT));
 
 CORS controls which origins (domains) can access your API.
 
-```bash
+\`\`\`bash
 npm install cors helmet express-rate-limit
-```
+\`\`\`
 
-```javascript
+\`\`\`javascript
 const express = require('express');
 const cors = require('cors');
 const helmet = require('helmet');
@@ -1443,7 +837,7 @@ const authLimiter = rateLimit({
 app.use('/api/auth/', authLimiter);
 
 app.listen(3000);
-```
+\`\`\`
 
 ---
 
@@ -1451,11 +845,11 @@ app.listen(3000);
 
 A common pattern for stateless API authentication.
 
-```bash
+\`\`\`bash
 npm install jsonwebtoken bcryptjs
-```
+\`\`\`
 
-```javascript
+\`\`\`javascript
 const express = require('express');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
@@ -1521,11 +915,11 @@ app.post('/api/auth/logout', protect, (req, res) => {
 });
 
 app.listen(3000, () => console.log('Auth API running on port 3000'));
-```
+\`\`\`
 
 ### JWT Flow Diagram
 
-```
+\`\`\`
 ┌──────────────────────────────────────────────────────────────────┐
 │                      JWT AUTH FLOW                               │
 │                                                                  │
@@ -1549,13 +943,13 @@ app.listen(3000, () => console.log('Auth API running on port 3000'));
 │    │  { user: { id, username } }   │                             │
 │    │ ◀─────────────────────────────│                             │
 └──────────────────────────────────────────────────────────────────┘
-```
+\`\`\`
 
 ---
 
 ## 20. Best Practices
 
-```
+\`\`\`
 ┌──────────────────────────────────────────────────────────────────┐
 │                   EXPRESS BEST PRACTICES                         │
 ├──────────────────────────────────────────────────────────────────┤
@@ -1596,11 +990,11 @@ app.listen(3000, () => console.log('Auth API running on port 3000'));
 │     Keep route handlers small (single responsibility)            │
 │     Write async handlers with proper error forwarding            │
 └──────────────────────────────────────────────────────────────────┘
-```
+\`\`\`
 
 ### Production-Ready Security Setup
 
-```javascript
+\`\`\`javascript
 require('dotenv').config();
 const express   = require('express');
 const helmet    = require('helmet');
@@ -1645,13 +1039,13 @@ app.use((err, req, res, next) => {
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => console.log('Production server on port ' + PORT));
-```
+\`\`\`
 
 ---
 
 ## 21. Quick Reference Cheatsheet
 
-```javascript
+\`\`\`javascript
 // ── Setup ─────────────────────────────────────────────────────
 const express = require('express');
 const app = express();
@@ -1706,7 +1100,7 @@ app.use((err, req, res, next) => {
 
 // ── Listen ────────────────────────────────────────────────────
 app.listen(3000, () => console.log('Running on http://localhost:3000'));
-```
+\`\`\`
 
 ---
 
@@ -1714,7 +1108,7 @@ app.listen(3000, () => console.log('Running on http://localhost:3000'));
 
 Express.js is the backbone of the Node.js web ecosystem. With its middleware-based architecture, clean routing, and massive ecosystem, it gives you full control to build anything from a simple API to a large-scale production service.
 
-```
+\`\`\`
 ┌──────────────────────────────────────────────────────────────────┐
 │                    WHAT TO LEARN NEXT                            │
 │                                                                  │
@@ -1743,7 +1137,7 @@ Express.js is the backbone of the Node.js web ecosystem. With its middleware-bas
 │    Railway, Render, Heroku  →  Quick deploys                     │
 │    Docker + EC2/GCP         →  Production grade                  │
 └──────────────────────────────────────────────────────────────────┘
-```
+\`\`\`
 
 ---
 
@@ -1754,3 +1148,8 @@ Express.js is the backbone of the Node.js web ecosystem. With its middleware-bas
 - [Helmet.js](https://helmetjs.github.io/)
 
 **Last Updated:** March 2026
+`;
+fs.appendFileSync(file, part3, 'utf8');
+
+console.log('All parts appended. Done!');
+console.log('File size:', fs.statSync(file).size, 'bytes');
