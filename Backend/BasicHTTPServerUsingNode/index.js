@@ -1,5 +1,5 @@
 const http = require('http');   // requires the http module 
-
+const fs = require('fs');
 // using the createserver function we can actually create http server using the http module 
 // returns server onject and takes callback as an argument 
 
@@ -14,13 +14,18 @@ const server = http.createServer(function listener(request , response){
 
     // Todo..
     
-    if(request.url=='/home'){
+    if(request.url==='/home'){
         // if we make a requat on /home this if block will execute 
         console.log(request.method);
-        // to send data in multiple chunks use response.write 
-        response.write("first hi\n")
-        response.write("second hi\n")
+        // // to send data in multiple chunks use response.write 
+        // response.write("first hi\n")
+        // response.write("second hi\n")
+        // write end to complete the data to know that the data end 
+        
+        // using writeHead to specify the status code of the website 
+
         response.end("Welcome to the world of node js home.") // can send only string type data in the response.end() method if send other like json object it will give an error 
+        
     }
     console.log("Request Recieved");
     // console.log("Incoming data:" , request);
@@ -36,3 +41,28 @@ server.listen(port,function exec(){   // port and callback
 
 // localhost:3000 or 127.0.0.1 is a standard address for ipv4 loopback traffic 
 // or the address site so that we user can see or read it 
+
+
+
+
+
+// ******* example 
+// post request using the fetch api 
+
+/*
+async function getData() {
+  const url = "https://example.org/products.json";
+  try {
+    const response = await fetch(url);
+    if (!response.ok) {
+      throw new Error(`Response status: ${response.status}`);
+    }
+
+    const result = await response.json();
+    console.log(result);
+  } catch (error) {
+    console.error(error.message);
+  }
+}
+*/
+
