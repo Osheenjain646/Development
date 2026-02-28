@@ -99,6 +99,8 @@
 // console.log(arr);
 // console.log(brr);
 
+// To protect data to be get changed use Objects.freeze to freeze the object from getting any changes in the object itself 
+
 // let arr1=new Array(10)
 // console.log(arr1);
 
@@ -133,7 +135,7 @@
 
 // // slice 
 // let arr3=[1,2,3,4,5,6,7,8,9]
-// let ans=arr3.slice(0,5)  // start index and no of elements  required 
+// let ans=arr3.slice(0,5)  // start index and no of elements required 
 // // this will take out elements from the orignal array and create a new array of it without deleting from the original 
 // console.log(ans);
 // console.log(arr3);
