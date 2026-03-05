@@ -2,7 +2,8 @@
 // if you don't want to specify tag name then make fragments <>[]<>
 
 // import Usecallback from "./Hooks/Usecallbackhookinreact"
-import Usedebouncehook from "./Hooks/Usedebouncehookinreact"
+// import Usedebouncehook from "./Hooks/Usedebouncehookinreact"
+import UseZustandhook from "./Hooks/UseZustandhookinreact"
 // import Useprevioushook from "./Hooks/Useprevioushookinreact"
 
 // import Useeffecthook from "./Hooks/Useeffecthookinreact"
@@ -49,9 +50,11 @@ const App = () => {
       {/* <Usememohook></Usememohook> */}
       {/* <Useprevioushook></Useprevioushook> */}
       {/* <Usecallback></Usecallback> */}
-      <Usedebouncehook></Usedebouncehook>
+      {/* <Usedebouncehook></Usedebouncehook> */}
+      <UseZustandhook></UseZustandhook>
     </div>
   )
 }
 
 export default App
+

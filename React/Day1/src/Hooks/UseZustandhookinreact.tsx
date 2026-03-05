@@ -23,13 +23,20 @@
  * const { count, increment } = useStore()
  */
 
+
 // npm i zustand
 
+import { useCounter } from "./zustand"
 
 const UseZustandhook = () => {
+
+  const {count , increment , decrement} = useCounter()
+
   return (
     <div>
-        
+        <div>count:{count}</div>
+        <button onClick={increment}>Increment</button>
+        <button onClick={decrement}>Decrement</button>
     </div>
   )
 }
