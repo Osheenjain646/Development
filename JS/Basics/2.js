@@ -9,7 +9,7 @@
 
 // let users1={}
 
-// // Additio of value 
+// // Addition of value 
 // users1.name="JavaScript"
 // users1.abb="JS"
 // console.log(users1);
@@ -23,7 +23,8 @@
 // // delete 
 
 
-// delete users1.name
+// delete users1.name 
+// Delete the whole pair 
 
 // console.log(users1);
 
@@ -151,7 +152,7 @@
 
 // (function(){
 //     console.log("Db Connected");
-// })();  // use to decide who is invoked first 
+// })();  // use ; to decide who is invoked first 
 // (function(){
 //     console.log("redis Connected");
 // })()
@@ -164,7 +165,7 @@
 // }
 // greet()
 
-// if there is one in this type of function we don't even need {}
+// if there is onlt one line in this type of function we don't even need {}
 
 
 // let sum=(a,b)=>a+b
