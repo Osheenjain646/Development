@@ -1,8 +1,9 @@
 // rafce used to create a function component
 // if you don't want to specify tag name then make fragments <>[]<>
 
-import Usecallback from "./Hooks/Usecallbackhookinreact"
-import Useprevioushook from "./Hooks/Useprevioushookinreact"
+// import Usecallback from "./Hooks/Usecallbackhookinreact"
+import Usedebouncehook from "./Hooks/Usedebouncehookinreact"
+// import Useprevioushook from "./Hooks/Useprevioushookinreact"
 
 // import Useeffecthook from "./Hooks/Useeffecthookinreact"
 // import Usememohook from "./Hooks/Usememohookinreact"
@@ -47,7 +48,8 @@ const App = () => {
       {/* <Userefhook></Userefhook> */}
       {/* <Usememohook></Usememohook> */}
       {/* <Useprevioushook></Useprevioushook> */}
-      <Usecallback></Usecallback>
+      {/* <Usecallback></Usecallback> */}
+      <Usedebouncehook></Usedebouncehook>
     </div>
   )
 }

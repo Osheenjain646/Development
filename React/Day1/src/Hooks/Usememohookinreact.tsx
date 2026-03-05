@@ -47,7 +47,7 @@ const Fact = ({val}:{val:number})=>{
         return fact1
     }
 
-    let factorial1 = useMemo(()=>ans(val),[val])
+    const factorial1 = useMemo(()=>ans(val),[val])
     return <p>Fcatorial: {factorial1}</p>
 }
 
