@@ -84,7 +84,7 @@
 
 
 // every 
-// cheeck for evry value is equal to something or of type specific 
+// check for evry value is equal to something or of type specific 
 
 // let arr = ["a","b",5]
 // const ans = arr.every(function(data){

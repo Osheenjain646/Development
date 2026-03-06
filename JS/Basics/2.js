@@ -165,7 +165,7 @@
 // }
 // greet()
 
-// if there is onlt one line in this type of function we don't even need {}
+// if there is only one line in this type of function we don't even need {}
 
 
 // let sum=(a,b)=>a+b
