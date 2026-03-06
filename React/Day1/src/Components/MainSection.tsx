@@ -119,6 +119,12 @@ const MainSection = () => {
                 <div>{data.model}</div>
                 <div>{data.year}</div>
                 <div>{data.variant}</div>
+                <div>{JSON.stringify(data.powertrain)}</div>
+                <div>{JSON.stringify(data.performance)}</div>
+                <div>{JSON.stringify(data.dimensions)}</div>
+                <div>{JSON.stringify(data.exterior)}</div>
+                <div>{JSON.stringify(data.interior)}</div>
+                <div>{JSON.stringify(data.pricing)}</div>
               </div>
             })
           }
