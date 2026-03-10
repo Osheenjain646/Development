@@ -30,7 +30,7 @@
 // const a=Object.keys(lang)   // get the keys of the objects 
 // console.log(a);
 
-// const b = Object.values(lang)  // get keys 
+// const b = Object.values(lang)  // get values  
 // const c = Object.entries(lang)  // get items or pairs 
 // console.log(b);
 // console.log(c);
