@@ -308,9 +308,9 @@
 //         },time*1000)
 //     })
 // }
-// to print idk1 after 1 sec and idk 2 after 3 sec after idk1 print then after 5 sec of idk2 print then print idk3  
+// // to print idk1 after 1 sec and idk 2 after 3 sec after idk1 print then after 5 sec of idk2 print then print idk3  
 
-// CallBack Hell 
+// // CallBack Hell 
 // setTimeOutPromisified(1).then(()=>{
 //     console.log("IDK1");
 //     setTimeOutPromisified(3).then(()=>{
