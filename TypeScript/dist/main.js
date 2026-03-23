@@ -37,20 +37,23 @@ Object.defineProperty(exports, "__esModule", { value: true });
 // let stringnumberarr=["guitar",45698] // have number and string 
 // let mixeddataarr=["one",true,45222] // have mixed all types 
 // stringarr.push("ghdj") // can push only the type of data entered 
-// stringnumberarr=stringarr // can push stingarr as stringnumberarr can have bith number and string value both 
+// stringnumberarr=stringarr // can push stingarr as stringnumberarr can have both number and string value both 
 // mixeddataarr.push("hcdjbjc")
 // mixeddataarr.push(5545);
 // mixeddataarr.push(true)
 // let arr =  [{name:"TS"} , {user:"TS"}]
-// // arr=mixeddataarr // error 
+// // arr=mixeddataarr // error as arr can only have object type data 
 // console.log(stringarr);
 // console.log(stringnumberarr);
 // console.log(mixeddataarr);
 // // Array Declaration 
-// let value:string[] = [] 
-// value.push("A")
-// value.push("B")
-// value.push("C")
+let value = [];
+value.push("A");
+value.push("B");
+value.push("C");
+let arr = value.slice(0, 1);
+console.log(arr);
+console.log(value);
 // // all other operation of array as in js as shift unshift splice etc 
 // console.log(value);
 // console.log(value.includes('A'));  // check if exits then true 
@@ -534,41 +537,39 @@ Object.defineProperty(exports, "__esModule", { value: true });
 //     return arr[0]!    // it can't be undefined 
 // }
 // Assignment 3
-class Employee {
-    name;
-    salary;
-    department;
-    constructor(name, salary, department) {
-        this.name = name;
-        this.salary = salary;
-        this.department = department;
-    }
-    get getSalary() {
-        return this.salary;
-    }
-    get getDepartment() {
-        return this.department;
-    }
-}
-class Manager extends Employee {
-    teamsize;
-    constructor(name, salary, department, teamsize) {
-        super(name, salary, department);
-        this.teamsize = teamsize;
-        this.teamsize = teamsize;
-    }
-    get getManagerDetails() {
-        return `Manager Details: 
-        Manager Name: ${this.name}
-        Department: ${this.getDepartment}
-        Salary: ${this.getSalary}
-        Team Size: ${this.teamsize}`;
-    }
-}
-const manager1 = new Manager("Osheen", 50000, "IT", 10);
-console.log(manager1.getManagerDetails);
-const employee1 = new Employee("Anurag", 30000, "HR");
-console.log(employee1.name);
-console.log(employee1.getSalary);
-console.log(employee1.getDepartment);
+//  class Employee{
+//     public name
+//     private salary
+//     protected department
+//     constructor(name:string,salary:number,department:string){
+//         this.name=name
+//         this.salary=salary
+//         this.department=department
+//     }
+//     get getSalary():number{
+//         return this.salary
+//     }
+//     get getDepartment():string{
+//         return this.department
+//     }
+// }
+// class Manager extends Employee{
+//     constructor(name:string,salary:number,department:string,public teamsize:number){
+//         super(name,salary,department)
+//         this.teamsize=teamsize
+//     }
+//     get getManagerDetails():string{
+//         return `Manager Details: 
+//         Manager Name: ${this.name}
+//         Department: ${this.getDepartment}
+//         Salary: ${this.getSalary}
+//         Team Size: ${this.teamsize}`
+//     }
+// }
+// const manager1 = new Manager("Osheen", 50000, "IT", 10)
+// console.log(manager1.getManagerDetails);
+// const employee1 = new Employee("Anurag", 30000, "HR")
+// console.log(employee1.name); 
+// console.log(employee1.getSalary);
+// console.log(employee1.getDepartment);
 //# sourceMappingURL=main.js.map
