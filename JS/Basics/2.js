@@ -1,5 +1,5 @@
 
-// //  Objects
+// Objects
 
 // let users={
 //     name:"JavaScript",
@@ -9,22 +9,22 @@
 
 // let users1={}
 
-// // Addition of value 
+// Addition of value
 // users1.name="JavaScript"
 // users1.abb="JS"
 // console.log(users1);
 
 
-// // Access
+// Access
 // console.log(users1.name);
 // console.log(users1['abb']);
 
 
-// // delete 
+// delete
 
 
-// delete users1.name 
-// Delete the whole pair 
+// delete users1.name
+// Delete the whole pair
 
 // console.log(users1);
 
@@ -58,27 +58,27 @@
 //     isLightOn:true
 // }
 
-// // insert 
+// insert
 // smartHome.securitySystem="Active"
 
-// // access
+// access
 
-// console.log(`The Curretnt Temperature is ${smartHome['temp']} degress`);
+// console.log(`The Current Temperature is ${smartHome['temp']} degrees`);
 
-// // update 
+// update
 
 // smartHome.temp=18
 
-// //remove 
+// remove
 // delete smartHome.isLightOn
 
-// //log
+// console.log the result
 
 // console.log(smartHome);
 
-// // assgn 2
+// // assign 2
 
-// // Bank Account 
+// Bank Account
 
 // const bankAccount=Object.freeze({
 //     accountNumber:98765,
@@ -87,24 +87,24 @@
 //     }
 // })
 
-// // attempt 
+// attempt
 
 // bankAccount['balance']=10000
 
-// // addition 
+// addition
 
 // bankAccount.currency="USD"
 
-// // verification
+// verification
 
 // console.log(bankAccount);
 
-// // balance will not change as freeze is used 
+// // balance will not change as freeze is used
 
 
-// // shallow freeze 
-// // It is used if you create a object in the freeze object 
-// // then you can modify value in that object 
+// shallow freeze
+// It is used if you create a object in the freeze object
+// then you can modify value in that object
 
 // bankAccount.balance.amount=100000
 
@@ -112,11 +112,11 @@
 
 
 
-// function in js 
+// function in js
 
-// there are 4 types of function 
+// there are 4 types of function
 
-// functional expression 
+// functional expression
 // functional equation
 // IIFE Immediately Invoked Functional Equation
 // Arrow Function
@@ -127,38 +127,37 @@
 // main()
 // function main(){
 //     console.log("Js");
-    
 // }
 
 // main()
 
-// Functional Equation 
+// Functional Equation
 
-// It is Assigned to someone and can't be call before declaration 
+// It is Assigned to someone and can't be call before declaration
 
-// let mian1=function(){
+// let main1=function(){
 //     console.log("JavaScript");
 // }
 
-// mian1()
+// main1()
 
 
-// IIFE 
-// used to protect from pollution when we create many function from other 
-// used for basically database 
-// as a program is run it is runned first 
+// IIFE
+// used to protect from pollution when we create many function from other
+// used for basically database
+// as a program is run it will run first
 
-// ()() 
+// ()()
 
 // (function(){
 //     console.log("Db Connected");
-// })();  // use ; to decide who is invoked first 
+// })();  // use ; to decide who is invoked first
 // (function(){
 //     console.log("redis Connected");
 // })()
 
 
-// Arrow function 
+// Arrow function
 
 // let greet = ()=>{
 //     console.log("Hello");
@@ -181,11 +180,11 @@
 
 // Assignment 1
 
-// function toCelcius(f){
-//     let celcius = (f-32)*(5/9)
-//     return celcius
+// function toCelsius(f){
+//     let celsius = (f-32)*(5/9)
+//     return celsius
 // }
-// let ans=toCelcius(45)
+// let ans=toCelsius(45)
 // console.log(ans);
 
 
@@ -197,41 +196,41 @@
 // }
 
 // function test(){
-//     let temp1=toCelcius(32)
+//     let temp1=toCelsius(32)
 //     console.log(isFreezing(temp1));
 // }
 // test()
 
 
-// Assignment 2 
+// Assignment 2
 
 // (()=>{
-//     securitycode=5
-//     console.log(`System Initialised. Security code ${securitycode} generated.`);
+//     securityCode=5
+//     console.log(`System Initialized. Security code ${securityCode} generated.`);
 // })()
 
-// console.log(securitycode);
+// console.log(securityCode);
 
-// we are able to access as we do not write it as var let or const 
-// it is getting globally declared 
+// we are able to access as we do not write it as var let or const
+// it is getting globally declared
 
 
 
-// prototype 
-// it is a special type of object that store methods and features 
+// prototype
+// it is a special type of object that store methods and features
 
-// How to make your own prototype 
-// function can be used to create a prototype 
+// How to make your own prototype
+// function can be used to create a prototype
 
 // function main(){
 
 // }
-// // create a prototype 
+// create a prototype
 // main.prototype.Greet=function(){
 //     console.log("Hello");
 // }
 
-// // Delete a prototype 
+// Delete a prototype
 
 // delete main.prototype.Greet
 
@@ -243,42 +242,41 @@
 
 
 // function main(){
-    
 // }
 
 // main.prototype.Random={
-//     randomnumbergenerator:function(){
+//     randomNumberGenerator:function(){
 //         console.log(Math.random());
 //     }
 // }
 
-// function generaterandomnumber(){
+// function generateRandomNumber(){
 //     const ans=new main()
-//     ans.Random.randomnumbergenerator()
+//     ans.Random.randomNumberGenerator()
 // }
 
-// generaterandomnumber()
+// generateRandomNumber()
 
 
-// Rest Operator and Spread Operator 
+// Rest Operator and Spread Operator
 
-// rest operator take first and put in a and put rest in b 
+// rest operator take first and put in a and put rest in b
 // function main(a,...b){
-//     console.log(a);  // give first value 
-//     console.log(b);  // give array of rest value 
+//     console.log(a);  // give first value
+//     console.log(b);  // give array of rest value
 // }
 // main(1,2,3,4,5,6)
 
 
-// spread operator 
+// spread operator
 
 // let arr1=[1,2,3,4,5]
 // let arr2=['a','b']
 // let arr3=[...arr1,...arr2]
-// console.log(arr3);  // this will put all the values of arr1 first then of arr2 
+// console.log(arr3);  // this will put all the values of arr1 first then of arr2
 
-// can be done in object also 
-// if i write same key then it will be overwritten 
+// can be done in object also
+// if i write same key then it will be overwritten
 // let obj1={
 //     name:"JS"
 // }
@@ -290,8 +288,8 @@
 // let obj3={...obj1,...obj2}
 // console.log(obj3);
 
-// Destructuring 
-// basically is used to convert complex structured data into structured format 
+// Destructuring
+// basically it is used to convert complex structured data into structured format
 
 
 // let arr =[{name:"JavaScript"},{name:"TypeScript"}]
@@ -302,8 +300,5 @@
 // console.log(b);
 // console.log(c);
 
-// same for object but provide key in the [] or {} to get value not random variable 
-
-
-
+// same for object but provide key in the [] or {} to get value not random variable
 
