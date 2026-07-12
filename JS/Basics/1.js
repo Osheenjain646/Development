@@ -1,18 +1,18 @@
-// Ternary Operator 
+// Ternary Operator
 // condition ? "true" : "false"
 
 // let age=45;
 // let voted=age>18?"yes":"no"
 // console.log(voted)
 
-// Ternary opearator 
+// Ternary operator
 // let temp=25
 // let ans= temp>25?"Hot Day" : (15<=temp && temp<=25 ? "Moderate" : "Cold Day")
 // console.log(ans);
 
-// use if-else for cleaner way 
+// use if-else for cleaner way
 
-// Nullish coelesence operator 
+// Nullish coalescence operator
 // we use it to get protected from getting any falsy value
 // eg:-
 
@@ -20,133 +20,129 @@
 //     console.log("User Data");
 // }
 
-// let User = "User data Not Found"/* Default value provided */??DB()  // Original data is fetched 
-// // if data is not fetched or it null or undefined or falsy value then default value will get assigned to the variable 
+// let User = "User data Not Found"/* Default value provided */??DB()  // Original data is fetched
+// // if data is not fetched or it null or undefined or falsy value then default value will get assigned to the variable
 
 // console.log(User);
 
-// primitive and Non primitive 
+// primitive and Non primitive
 
-// primitive 
+// primitive
 
-// number 
+// number
 // let a=45;
-// let b=45.23 
+// let b=45.23
 
 //string
 // let a='hd'
-// let b="cbujb" 
+// let b="crumb"
 
 //BigInt
-// let a = 6464646652626364665265; // this give it in power of exponential 
-//then use 
-// let a = 26452645126126552656416496n //this will give value 
+// let a = 6464646652626364665265; // this give it in power of exponential
+//then use
+// let a = 26452645126126552656416496n //this will give value
 
-// boolean 
+// boolean
 // true and false
-// null and undefined 
-// let a;  // Unintentially assigning null so undefined 
-// console.log(a);// undefined // falsy 
-// let a=null //truthy 
+// null and undefined
+// let a;  // Unintentionally assigning null so undefined
+// console.log(a);// undefined // falsy
+// let a=null //truthy
 // console.log(a);
-// console.log(typeof null);  // object type 
-// console.log(typeof undefined);  // undefined type 
+// console.log(typeof null);  // object type
+// console.log(typeof undefined);  // undefined type
 
-// let name=undefined??null // as null is truthy will give null 
+// let name=undefined??null // as null is truthy will give null
 // console.log(name);
 
-// Symbol 
+// Symbol
 // const s = Symbol('hello');
 // console.log(s);
 
-// non primitive Data Type 
-// array , object, function 
+// non primitive Data Type
+// array , object, function
 
-// let a =45 
+// let a =45
 // let b=a
 // console.log(a);
 // console.log(b);
 // b=89
 // console.log(a);
 // console.log(b);
-// this will copy the value only not reference of a 
+// this will copy the value only not reference of a
 
-// but in non primitive it will copy reference too 
+// but in non primitive it will copy reference too
 
 // let a={
 //     name:"Javascript",
 //     abb:"JS"
 // }
-// // console.log(a);
+// console.log(a);
 
 // let b=a
-// // console.log(b);
+// console.log(b);
 
-// b.name="Typescript"  // change the name key data 
+// b.name="Typescript"  // change the name key data
 // console.log(a);
 // console.log(b);
 
-// Array and List 
-//array store homogenuous data only but list store heterogenuous
-// there is a list in js no array 
+// Array and List
+//array store homogeneous data only but list store heterogenous
+// there is a list in js no array
 
 // let arr = ["Javascript",[1,2,3],true]
-// // console.log(arr);
+// console.log(arr);
 // let brr = arr
-// // console.log(brr);
+// console.log(brr);
 // let brr = arr
 // brr[0]="Something"
 // console.log(arr);
 // console.log(brr);
 
-// To protect data to be get changed use Objects.freeze to freeze the object from getting any changes in the object itself 
+// To protect data to be get changed use Objects.freeze to freeze the object from getting any changes in the object itself
 
 // let arr1=new Array(10)
 // console.log(arr1);
 
-// in built function 
-// push pop unshift shift splice slice 
+// in built function
+// push pop unshift shift splice slice
 
-// two types of declaration 
-// let arr1=[] 
+// two types of declaration
+// let arr1=[]
 // let arr2=new Array(10)
 
-// // push 
-// // insert element in the last of the array 
+// push
+// insert element in the last of the array
 // arr2.push(10)
 // arr2.push(20)
 // arr2.push(30)
 // arr2.push(40)
 // console.log(arr2);
 
-// //pop 
-// // this will pop out the element from the end of the array
+// pop
+// this will pop out the element from the end of the array
 // arr2.pop()
 // console.log(arr2);
 
-// // unshift 
-// arr2.unshift(10) // this will shift all the elements and then insert in the first position of the arr 
+// unshift
+// arr2.unshift(10) // this will shift all the elements and then insert in the first position of the arr
 // console.log(arr2);
 
-// //shift 
-// arr2.shift()  // this will delete or pop the element from the start of the array 
+// shift
+// arr2.shift()  // this will delete or pop the element from the start of the array
 // console.log(arr2);
 
 
-// // slice 
+// slice
 // let arr3=[1,2,3,4,5,6,7,8,9]
-// let ans=arr3.slice(0,5)  // start index and no of elements required 
-// // this will take out elements from the orignal array and create a new array of it without deleting from the original 
+// let ans=arr3.slice(0,5)  // start index and no of elements required
+// this will take out elements from the original array and create a new array of it without deleting from the original
 // console.log(ans);
 // console.log(arr3);
 
 
-// // splice 
-// let ans1=arr3.splice(0,5)  // this will copy the first 5 elements from 0 and manipulate the original array 
+// splice
+// let ans1=arr3.splice(0,5)  // this will copy the first 5 elements from 0 and manipulate the original array
 // console.log(ans1);
 // console.log(arr3);
-
-
-
-
 
