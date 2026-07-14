@@ -1,8 +1,8 @@
 // loops
 
-// all other loops as while do while for for each 
+// all other loops as while , do while , for , for each.
 
-// forof loop for array 
+// for of loop for array
 // forin loop for object
 
 
@@ -13,7 +13,7 @@
 //     console.log(i);
 // }
 
-// // for in loop => object 
+// for in loop => object
 
 // let lang={
 //     name:"javascript",
@@ -25,24 +25,24 @@
 // }
 
 
-// // using the object and iterating on object 
+// using the object and iterating on object
 
-// const a=Object.keys(lang)   // get the keys of the objects 
+// const a=Object.keys(lang)   // get the keys of the object
 // console.log(a);
 
-// const b = Object.values(lang)  // get values  
-// const c = Object.entries(lang)  // get items or pairs 
+// const b = Object.values(lang)  // get values
+// const c = Object.entries(lang)  // get items or pairs
 // console.log(b);
 // console.log(c);
 
 
-// map filter reduce every find foreach 
-// in built function loops 
+// map , filter , reduce , every , find , foreach.
+// in built function loops
 
-// map 
-// used to map all element with some functinality and return the result in the form of array 
+// map
+// used to map all elements with some functionality and return the result in the form of array
 
-// factory function is a function that do some operation 
+// factory function is a function that do some operation
 
 // function machine(data){
 //     return data*2
@@ -51,11 +51,14 @@
 
 // let arr=[1,2,3,4,5]
 
-// const ans = arr .map((i)=>i*2)
+// const ans = arr.map((i)=>machine(i))
 // console.log(ans);
+// const ans1 = arr.map((i)=>i*2)
+// console.log(ans1);
+// This will return the data in the form of array
 
-// foEach 
-// does not return anything means if accessed give undefined 
+// foEach
+// does not return anything means if accessed give undefined
 
 // let arr =[1,2,3,4,5]
 
@@ -63,7 +66,7 @@
 //     console.log(data*5);
 // })
 
-// Filter 
+// Filter
 
 // let arr =[1,2,3,4,5]
 
@@ -75,47 +78,48 @@
 // console.log(c);
 
 
-// let freinds=["sam","sachin","ramesh"]
-// let f = freinds.filter(function(data){
+// let friends=["sam","shin","Ramsey"]
+// let f = friends.filter(function(data){
 //     return data.startsWith('s')===true
 // })
 
 // console.log(f);
 
 
-// every 
-// check for evry value is equal to something or of type specific 
+// every
+// check for every value is equal to something or of type specific
 
 // let arr = ["a","b",5]
 // const ans = arr.every(function(data){
-//     return typeof data ==="string"
+//     return typeof data ==="string" || "number"
 // })
 
 // console.log(ans);
 
 // find
-// used to find a particular data 
+// used to find a particular data
 
 // let arr = [1,2,3,4,5]
 
 // let element = arr.find(function(data){
-//     return data===5    // if not find return undefined 
+//     return data===5    // if not find return undefined
 // })
 
 // console.log(element);
 
-// reduce 
+// reduce
 
 // let arr = [1,2,3,4,5]
 
-// const sum = arr.reduce(function(prevsum/*have previous sum*/,iterator /*have current value*/){
-//     return prevsum+iterator//curr is an iterator 
+// const sum = arr.reduce(function(prevSum/*have previous sum*/,iterator /*have current value*/){
+//     return prevSum+iterator//curr is an iterator
 // },0/*initial value*/)
-// // it will go until the iterator cross the last element 
-// // return the prevsum as result 
+// it will go until the iterator cross the last element
+// return the prevSum as result
+// console,log(sum)
 
 
-// // Assignment 1 
+// // Assignment 1
 // const products = [
 //   { name: 'Apple', price: 1.5, category: 'Fruit' },
 //   { name: 'Onion', price: 0.8, category: 'Vegetable' },
@@ -320,14 +324,4 @@
 // to make a keyword private in js we use __(can be accessed) or # (can't be accessed)
 // to make protected _ 
 // must learn it 
-
-
-
-
-
-
-
-
-
-
 
