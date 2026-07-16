@@ -119,7 +119,7 @@
 // console,log(sum)
 
 
-// // Assignment 1
+// Assignment 1
 // const products = [
 //   { name: 'Apple', price: 1.5, category: 'Fruit' },
 //   { name: 'Onion', price: 0.8, category: 'Vegetable' },
@@ -128,7 +128,7 @@
 //   { name: 'Carrot', price: 0.5, category: 'Vegetable' }
 // ];
 
-// // filter 
+// filter
 // let fruits = products.filter((data)=>{
 //     return data.category==='Fruit'
 // })
@@ -140,8 +140,8 @@
 // })
 // console.log(names);
 
-// let total_cost= products.reduce((prevsum,products)=>{
-//     return prevsum+products.price
+// let total_cost= products.reduce((prevSum,products)=>{
+//     return prevSum+products.price
 // },0)
 
 // console.log(total_cost);
@@ -155,14 +155,14 @@
 //   { id: 4, name: 'David', age: 30, hasID: true }
 // ];
 
-// // find 
+// find
 // const user = users.find((data)=>{
 //     return data.hasID===false
 // })
 
 // console.log(user);
 
-// // every 
+// every
 
 // const due_to_bob=users.every((data)=>{
 //     return data.age>18
@@ -170,20 +170,25 @@
 
 // console.log(due_to_bob);
 
-// // forEach 
+// forEach
 
 // users.forEach((users)=>{
-//     console.log(`Checking access for ${users.name}.`);  
+//     console.log(`Checking access for ${users.name}.`);
 // })
 
 // const user1 = {id:1,name:'Alice',age:22,hasId:true}
+
+// console.log(Object.entries(user1));
+
+// Object.entries will provide array or list of list of key and value of the pair of the object
+
 
 // Object.entries(user1).forEach(([key,value])=>{
 //     console.log(key , value);
 // })
 
 
-// Classes in the js 
+// Classes in the js
 
 // class Car{
 //     constructor(name,brand){
@@ -193,7 +198,6 @@
 
 //     message(){
 //         return `This is my ${this.name}`;
-        
 //     }
 // }
 
@@ -205,13 +209,13 @@
 // console.log(car.message());
 
 
-// keywords 
-// static 
+// keywords
+// static
 
 // class Car{
-//     static name="bugatti"  
-//     // using the static you can access the method and property 
-//     // using the class name directly without creating the object 
+//     static name="bugatti"
+//     // using the static you can access the method and property
+//     // using the class name directly without creating the object
 //     constructor(name,brand){
 //         this.name=name
 //         this.brand=brand
@@ -219,7 +223,6 @@
 
 //     static message(){
 //         return `This is my ${this.name}`;
-        
 //     }
 // }
 
@@ -228,7 +231,7 @@
 // console.log(Car.message());
 
 
-// get or set 
+// get or set
 
 // class User{
 //     constructor(name,age){
@@ -236,10 +239,9 @@
 //         this.name=name
 //     }
 
-//     get details(){    // this is used to get the data 
+//     get details(){    // this is used to get the data
 //         console.log(`The user Data is ${this.name} ${this.age}`);
 //         // return `The user Data is ${this.name} ${this.age}`;
-        
 //     }
 
 //     set set_age(age){
@@ -252,18 +254,19 @@
 
 // const user1=new User("Alice",45)
 
-// // get the data 
-// // console.log(user1.details);// for return 
+// get the data
+// console.log(user1.details);// for return
 
-// user1.details  // without return 
+// user1.details  // without return
 
-// // set 
+// set
+// user1.set_age=48
 
 // user1.age=48
 
 // user1.details
 
-// Assignment 1 
+// Assignment 1
 
 // class BankAccount{
 //     balance = 0
@@ -280,14 +283,13 @@
 //         }
 //     }
 
-//     get formattedBalancer(){
+//     get formattedBalance(){
 //         return `$${this._balance}`
 //     }
 
 //     withdraw (amount){
 //         if(this._balance<0){
 //             console.log(`Can't withdraw`);
-            
 //         }
 //         this._balance-=amount
 //         console.log("amount deducted");
@@ -295,9 +297,9 @@
 // }
 
 // const user=new BankAccount('Anurag',99999999999999)
-// console.log(user.formattedBalancer);
+// console.log(user.formattedBalance);
 
-// Assignment 2 
+// Assignment 2
 
 // class Book{
 //     static totalBooks=0
@@ -305,7 +307,7 @@
 //         this.title=title
 //         this.author=author
 //         this.price=price
-//         Book.totalBooks+=1  // increase the count number of instances created of the Book class 
+//         Book.totalBooks+=1  // increase the count number of instances created of the Book class
 //     }
 
 //     static comparePrice(bookA,bookB){
@@ -322,6 +324,6 @@
 
 // *****************************
 // to make a keyword private in js we use __(can be accessed) or # (can't be accessed)
-// to make protected _ 
-// must learn it 
+// to make protected _
+// must learn it
 
