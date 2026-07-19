@@ -1,5 +1,5 @@
-// closure and lexical scoping (the scope where in which child function can accesss all the features of the parent function) 
-// lexical scope of function parent 
+// closure and lexical scoping (the scope where in which child function can access all the features of the parent function)
+// lexical scope of function parent
 // function parent(){
 //     let name="JS"
 //     function child1(){
@@ -16,7 +16,7 @@
 // parent()
 
 
-// closure 
+// closure
 
 // function parent(){
 //     let name="JS"
@@ -29,8 +29,8 @@
 // ans()
 
 
-// this keyword 
-// console.log(this);  // node will return the {} as of node env 
+// this keyword
+// console.log(this);  // node will return the {} as of node env
 
 
 // let obj={
@@ -39,7 +39,7 @@
 //         console.log(this.name);
 //     }
 // }
-// for arrow function 
+// for arrow function
 // let obj1={
 //     name:"JS",
 //     greet:function(){
@@ -59,24 +59,24 @@
 // }
 // lang.greet()
 // let abb=lang.greet
-// abb()  // can't access this keyword as have global check give undefined 
+// abb()  // can't access this keyword as have global check give undefined
 
-// to recover it 
+// to recover it
 
-// use bind 
+// use bind
 
-// let abb1=lang.greet.bind(lang)  // bind the lang to call it easily but not call it immediately 
+// let abb1=lang.greet.bind(lang)  // bind the lang to call it easily but not call it immediately
 // abb1()
 
-// if you forgot .bind you can use call as 
+// if you forgot .bind you can use call as
 
-// abb.call(lang)   // call greet from the lang obj 
+// abb.call(lang)   // call greet from the lang obj
 
-// apply 
+// apply
 
 // abb.apply(lang)
 
-// but apply and call will call the function immediately 
+// but apply and call will call the function immediately
 
 
 // function message(city,car){
@@ -92,15 +92,16 @@
 // abb("Delhi" , "bugatti")
 
 
-// to avoid it we use call and apply 
+// to avoid it we use call and apply
 
 // message.call(user,"hir","hi")
 
-// message.apply(user,["hjb","lccka"])
+// pass the parameter of the function(message) in the array format always
+// message.apply(user,["hjb","lack"])
 
-// classes type 
+// classes type
 
-// map :- store the data in key value pair it is a data structure of js 
+// map :- store the data in key value pair it is a data structure of js
 
 // let map = new Map()
 // map.set('name' , 'JS')
@@ -110,9 +111,9 @@
 // console.log(map.has('name'));
 // console.log(map.delete('lang'));
 // console.log(map);
-// // have set also but to provide both key and value pair 
+// have set also but to provide both key and value pair
 
-// Date class 
+// Date class
 
 // const date = new Date()
 // console.log(date.getDate(),
@@ -166,7 +167,7 @@
 
 // console.log(map);
 
-// CallBack also known as function is a function that can pass as an argument inside a function so it is also known as functional argument 
+// CallBack also known as function is a function that can pass as an argument inside a function so it is also known as functional argument
 
 // function sum(a,b){
 //     return a+b;
@@ -182,10 +183,10 @@
 // console.log(ans);
 
 
-// Promises 
-// It is a class 
+// Promises
+// It is a class
 
-// Synchronous execution 
+// Synchronous execution
 // executes only line by line only and no line will run after it until it gets finished '
 
 // console.log("jii");
@@ -197,17 +198,17 @@
 // console.log(sum);
 // console.log("kii");
 
-// asynchronous execution 
+// asynchronous execution
 
 // console.log("hello1");
-// setTimeout(()=>{                   // it is function made by google that is not provided by node but by v8 
-//     // all asynchronous operation go to web apis and do not disturb the other execution and after execution go to callback queue and wait for its execution 
+// setTimeout(()=>{                   // it is function made by google that is not provided by node but by v8
+//     // all asynchronous operation go to web apis and do not disturb the other execution and after execution go to callback queue and wait for its execution
 //     console.log("inner hii");
 // })
 
 // console.log("hello2");
 
-// file read 
+// file read
 // console.log("hello1");
 
 // const fs=require('fs')
@@ -233,13 +234,13 @@
 // fs.writeFileSync('./a.txt')
 
 
-// Promises 
-// It is a class who tell that a asynchronous function is done or not , resolved or reject 
+// Promises
+// It is a class who tell that a asynchronous function is done or not , resolved or reject
 
 // function ReadFilePromisified(){
 //     const p = new Promise()
 //     return p
-// }  // normal syntax 
+// }  // normal syntax
 
 
 // const fs = require('fs')
