@@ -127,17 +127,17 @@
 
 
 // const users = [
-//   { name: "Anurag", score: 80 },
-//   { name: "Rahul", score: 45 },
-//   { name: "Priya", score: 92 }
+//     { name: "Anurag", score: 80 },
+//     { name: "Rahul", score: 45 },
+//     { name: "Priya", score: 92 }
 // ];
 
 // function evaluate(passingMarks, bonus) {
-//   return {
+//     return {
 //     name: this.name,
 //     finalScore: this.score + bonus,
 //     status: this.score + bonus >= passingMarks ? "Pass" : "Fail"
-//   };
+//     };
 // }
 
 // let arr=[]
@@ -249,9 +249,9 @@
 //     const p = new Promise(function(resolve,reject){
 //         fs.readFile(file,'utf-8',(err,data)=>{
 //             if(err){
-//                 reject("Give me the file")     // error call catch and go to the notdone function 
+//                 reject("Give me the file")     // error call catch and go to the notdone function
 //             }else{
-//                 resolve(data)     // get data call the then and go to the done function 
+//                 resolve(data)     // get data call the then and go to the done function
 //             }
 //         })
 //     })
@@ -265,10 +265,10 @@
 //     console.log(err);
 // }
 
-// function lastexecution(){
-//     console.log("Execution completed");    // finally will always execute at the end of the call of the promisified function 
+// function lastExecution(){
+//     console.log("Execution completed");    // finally will always execute at the end of the call of the promisified function
 // }
-// ReadFilePromisified('').then(done).catch(notdone).finally(lastexecution)
+// ReadFilePromisified('').then(done).catch(notdone).finally(lastExecution)
 
 // setTimeOut
 
@@ -293,10 +293,9 @@
 //         },7000)
 //     })
 // }
-// Promise.all([timeout1(),timeout2(),timeout3()]).then((data)=>{    // used to resolve all the promises at once then then function will call 
-//     console.log(data);// give array formatted data 
+// Promise.all([timeout1(),timeout2(),timeout3()]).then((data)=>{    // used to resolve all the promises at once then then function will call
+//     console.log(data);// give array formatted data
 //     console.log("All task completed");
-    
 // })
 
 
@@ -309,9 +308,9 @@
 //         },time*1000)
 //     })
 // }
-// // to print idk1 after 1 sec and idk 2 after 3 sec after idk1 print then after 5 sec of idk2 print then print idk3  
+// // to print idk1 after 1 sec and idk 2 after 3 sec after idk1 print then after 5 sec of idk2 print then print idk3
 
-// // CallBack Hell 
+// // CallBack Hell
 // setTimeOutPromisified(1).then(()=>{
 //     console.log("IDK1");
 //     setTimeOutPromisified(3).then(()=>{
@@ -322,7 +321,7 @@
 //     })
 // })
 
-// to see good 
+// to see good
 
 // setTimeOutPromisified(1).then(()=>{
 //     console.log("IDk1");
@@ -335,10 +334,10 @@
 // })
 
 
-// asyncawait that work asynchronously outside and internaly synchronously 
-// IMP better way of writing the callback 
+// async await that work asynchronously outside and internally synchronously
+// IMP better way of writing the callback
 
-// function must be async 
+// function must be async
 // async function main() {
 //     await setTimeOutPromisified(1)
 //     console.log("IDK1");
@@ -350,15 +349,15 @@
 // main()
 
 
-// microtask that has priority to execute first and macrotask is executed usually 
+// microtask that has priority to execute first and macrotask is executed usually
 
 // console.log("A");
 
-// setTimeout(()=>{     // macrotask execute after the microtask 
+// setTimeout(()=>{     // macrotask execute after the microtask
 //     console.log("B");
 // },1000)
 
-// Promise.resolve().then(()=>{       // microtask execute first 
+// Promise.resolve().then(()=>{       // microtask execute first
 //     console.log("C");
 // }).then(()=>{
 //     console.log("D");
@@ -366,13 +365,5 @@
 
 // console.log("E");
 
-
-// for async file read we use try and catch block for data and error as then and catch in sync read 
-
-
-
-
-
-
-
-
+// *******************
+// for async file read we use try and catch block for data and error as then and catch in sync read
